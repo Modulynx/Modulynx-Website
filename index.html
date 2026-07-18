@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modulynx — Modular Systems, Feline Precision</title>
+  <meta name="description" content="Modulynx builds modular digital systems with predatory precision — interfaces, motion and architecture that feel alive.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════ Cinematic preloader: lynx eyes opening ══════════ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-eyes">
+      <span class="pre-eye"><span class="pre-pupil"></span></span>
+      <span class="pre-eye"><span class="pre-pupil"></span></span>
+    </div>
+    <p class="preloader-word">MODULYNX</p>
+  </div>
+
+  <!-- ══════════ Film grade overlays ══════════ -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ══════════ Custom cursor ══════════ -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ══════════ Navigation ══════════ -->
+  <nav class="nav" id="nav">
+    <a class="nav-brand" href="#top" aria-label="Modulynx home">
+      <img class="brand-mark" src="logo/modulynx-logo.svg" alt="" width="40" height="40">
+      <span class="brand-word">MODU<em>LYNX</em></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link">The Lynx Way</a>
+      <a href="#services" class="nav-link">Capabilities</a>
+      <a href="#work" class="nav-link">Selected Work</a>
+      <a href="#stats" class="nav-link">Track Record</a>
+      <a href="#contact" class="nav-link nav-cta magnetic">Start a Project</a>
+    </div>
+  </nav>
+
+  <!-- ══════════ Hero ══════════ -->
+  <header class="hero" id="top">
+    <canvas id="particles" class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-rays" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <!-- The living lynx -->
+      <div class="lynx-stage" id="lynxStage">
+        <div class="lynx-aura" aria-hidden="true"></div>
+        <svg id="lynxSvg" class="lynx-svg" viewBox="0 0 240 240" role="img" aria-label="Modulynx lynx emblem">
+          <defs>
+            <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1d2635"/>
+              <stop offset=".55" stop-color="#121826"/>
+              <stop offset="1" stop-color="#0b0f16"/>
+            </linearGradient>
+            <linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f2a83b"/>
+              <stop offset=".5" stop-color="#8fc7dd"/>
+              <stop offset="1" stop-color="#f2a83b"/>
+            </linearGradient>
+            <radialGradient id="irisGrad" cx=".5" cy=".45" r=".65">
+              <stop offset="0" stop-color="#ffe9b0"/>
+              <stop offset=".45" stop-color="#ffc95e"/>
+              <stop offset="1" stop-color="#c97f16"/>
+            </radialGradient>
+            <filter id="eyeGlow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+
+          </defs>
+          <!-- ── The living lynx mark ── -->
+          <g class="lynx-breathe">
+              <g class="lynx-head" id="lynxHead">
+                <!-- ear tufts -->
+                <path class="tuft" d="M57 26 L48 4 L66 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.4"/>
+                <path class="tuft" d="M183 26 L192 4 L174 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.4"/>
+                <!-- silhouette -->
+                <path class="silhouette" d="
+                  M120 52
+                  C 106 53, 95 57, 86 64
+                  L 57 26
+                  L 53 90
+                  C 45 103, 41 115, 43 128
+                  L 25 141 L 47 148 L 33 166 L 58 167
+                  C 67 184, 85 197, 105 203
+                  C 111 207, 115 209, 120 209
+                  C 125 209, 129 207, 135 203
+                  C 155 197, 173 184, 182 167
+                  L 207 166 L 193 148 L 215 141 L 197 128
+                  C 199 115, 195 103, 187 90
+                  L 183 26
+                  L 154 64
+                  C 145 57, 134 53, 120 52 Z"
+                  fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="1.6" stroke-linejoin="round"/>
+                <!-- inner ear shading -->
+                <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85"/>
+                <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85"/>
+                <!-- facet lines -->
+                <g class="facets" stroke="#2a3547" stroke-width="1.1" fill="none" opacity=".9">
+                  <path d="M120 52 L120 90"/>
+                  <path d="M86 64 L104 96 L120 90 L136 96 L154 64"/>
+                  <path d="M53 90 L74 104 L104 96"/>
+                  <path d="M187 90 L166 104 L136 96"/>
+                  <path d="M43 128 L74 128 L74 104"/>
+                  <path d="M197 128 L166 128 L166 104"/>
+                  <path d="M58 167 L86 152 L74 128"/>
+                  <path d="M182 167 L154 152 L166 128"/>
+                  <path d="M86 152 L104 168 L120 158 L136 168 L154 152"/>
+                  <path d="M105 203 L104 168 M135 203 L136 168"/>
+                </g>
+                <!-- brow marks -->
+                <path d="M72 100 Q 88 92 102 99" stroke="#f2a83b" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"/>
+                <path d="M168 100 Q 152 92 138 99" stroke="#f2a83b" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"/>
+
+                <!-- ══ eyes ══ -->
+                <g class="eye-group" filter="url(#eyeGlow)">
+                  <g class="eye" id="eyeL">
+                    <path class="eye-shape" d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="url(#irisGrad)"/>
+                    <ellipse class="pupil" id="pupilL" cx="88" cy="113" rx="4.2" ry="8.4" fill="#0a0c10"/>
+                    <circle cx="84" cy="109" r="2" fill="#fff6df" opacity=".9"/>
+                    <path class="eyelid" id="lidL" d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="#0e1420"/>
+                  </g>
+                  <g class="eye" id="eyeR">
+                    <path class="eye-shape" d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="url(#irisGrad)"/>
+                    <ellipse class="pupil" id="pupilR" cx="152" cy="113" rx="4.2" ry="8.4" fill="#0a0c10"/>
+                    <circle cx="148" cy="109" r="2" fill="#fff6df" opacity=".9"/>
+                    <path class="eyelid" id="lidR" d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="#0e1420"/>
+                  </g>
+                </g>
+
+                <!-- nose + mouth -->
+                <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9"/>
+                <path d="M120 162 L120 172 M120 172 Q 112 180 104 176 M120 172 Q 128 180 136 176"
+                      stroke="#2a3547" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                <!-- whiskers -->
+                <g class="whiskers" stroke="#4a5670" stroke-width="1" opacity=".5" fill="none" stroke-linecap="round">
+                  <path d="M96 160 Q 74 158 58 150"/>
+                  <path d="M98 168 Q 78 170 64 166"/>
+                  <path d="M144 160 Q 166 158 182 150"/>
+                  <path d="M142 168 Q 162 170 176 166"/>
+                </g>
+              </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-copy">
+        <p class="hero-eyebrow reveal">MODULAR DIGITAL STUDIO</p>
+        <h1 class="hero-title">
+          <span class="line-mask"><span class="line">Built with the</span></span>
+          <span class="line-mask"><span class="line accent">eyes of a lynx.</span></span>
+        </h1>
+        <p class="hero-sub reveal">
+          Modulynx engineers modular systems, cinematic interfaces and living motion —
+          products that watch, react and move like something alive.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="#contact" class="btn btn-primary magnetic">Start a Project</a>
+          <a href="#about" class="btn btn-ghost magnetic">See how we hunt</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-hint" aria-label="Scroll down">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">SCROLL</span>
+    </a>
+  </header>
+
+  <main>
+    <!-- ══════════ Marquee strip ══════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>PRECISION</span><i>◆</i><span>MODULARITY</span><i>◆</i><span>MOTION</span><i>◆</i><span>INSTINCT</span><i>◆</i>
+        <span>PRECISION</span><i>◆</i><span>MODULARITY</span><i>◆</i><span>MOTION</span><i>◆</i><span>INSTINCT</span><i>◆</i>
+        <span>PRECISION</span><i>◆</i><span>MODULARITY</span><i>◆</i><span>MOTION</span><i>◆</i><span>INSTINCT</span><i>◆</i>
+      </div>
+    </div>
+
+    <!-- ══════════ About / The Lynx Way ══════════ -->
+    <section class="section about" id="about">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">01 — THE LYNX WAY</p>
+        <h2 class="section-title">A lynx sees what others miss.<br><span class="dim">So do we.</span></h2>
+      </div>
+      <div class="about-grid">
+        <p class="about-lead reveal">
+          The lynx hunts by patience and precision — it studies the terrain, moves only when it matters,
+          and never wastes a motion. We build software the same way: modular parts, deliberate motion,
+          zero dead weight.
+        </p>
+        <ul class="about-list">
+          <li class="reveal"><span class="tick">◆</span><div><h3>Sharp vision</h3><p>We audit before we build. Every module earns its place in the system.</p></div></li>
+          <li class="reveal"><span class="tick">◆</span><div><h3>Silent speed</h3><p>Performance budgets from day one — interfaces that pounce, never lag.</p></div></li>
+          <li class="reveal"><span class="tick">◆</span><div><h3>Living motion</h3><p>Spring physics and cinematic timing make every screen feel awake.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════ Capabilities ══════════ -->
+    <section class="section services" id="services">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">02 — CAPABILITIES</p>
+        <h2 class="section-title">Everything modular.<br><span class="dim">Everything alive.</span></h2>
+      </div>
+      <div class="cards">
+        <article class="card tilt reveal">
+          <div class="card-icon">⬡</div>
+          <h3>Modular Architecture</h3>
+          <p>Design systems and component libraries that scale — assembled like vertebrae, not glued like bricks.</p>
+        </article>
+        <article class="card tilt reveal">
+          <div class="card-icon">◈</div>
+          <h3>Interface Engineering</h3>
+          <p>Production-grade web apps with obsessive attention to state, accessibility and detail.</p>
+        </article>
+        <article class="card tilt reveal">
+          <div class="card-icon">〰</div>
+          <h3>Motion &amp; Interaction</h3>
+          <p>Spring-driven animation, scroll choreography and micro-interactions with cinematic timing.</p>
+        </article>
+        <article class="card tilt reveal">
+          <div class="card-icon">◐</div>
+          <h3>Brand Systems</h3>
+          <p>Identities built as systems — logo, type, color and motion language that flex across media.</p>
+        </article>
+        <article class="card tilt reveal">
+          <div class="card-icon">⚡</div>
+          <h3>Performance</h3>
+          <p>Core Web Vitals in the green. We profile, trim and cache until pages load like a reflex.</p>
+        </article>
+        <article class="card tilt reveal">
+          <div class="card-icon">☾</div>
+          <h3>Night Watch</h3>
+          <p>Monitoring, maintenance and iteration after launch. The lynx never sleeps on your product.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════ Selected Work ══════════ -->
+    <section class="section work" id="work">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">03 — SELECTED WORK</p>
+        <h2 class="section-title">Few kills.<br><span class="dim">All clean.</span></h2>
+      </div>
+      <div class="projects">
+        <!-- ── Featured: Reelflow ── -->
+        <article class="project-card project-featured tilt reveal">
+          <div class="project-cover">
+            <svg viewBox="0 0 400 250" aria-hidden="true">
+              <rect width="400" height="250" fill="#0d1320"/>
+              <!-- conveyor: idea → video → profit -->
+              <path d="M30 125 H370" stroke="rgba(233,230,223,.12)" stroke-width="1.6" stroke-dasharray="5 7"/>
+              <!-- node 1: spark / ideation -->
+              <g transform="translate(70 125)">
+                <circle r="26" fill="none" stroke="#8fc7dd" stroke-width="1.8"/>
+                <path d="M0 -12 L4 -3 L13 -2 L6 4 L8 13 L0 8 L-8 13 L-6 4 L-13 -2 L-4 -3 Z" fill="#8fc7dd" opacity=".9"/>
+              </g>
+              <!-- node 2: reel / video -->
+              <g transform="translate(200 125)">
+                <rect x="-30" y="-44" width="60" height="88" rx="10" fill="none" stroke="#f2a83b" stroke-width="2.2"/>
+                <path d="M-8 -14 L14 0 L-8 14 Z" fill="#f2a83b"/>
+                <circle cx="0" cy="34" r="2.4" fill="#f2a83b" opacity=".7"/>
+              </g>
+              <!-- node 3: growth / monetization -->
+              <g transform="translate(330 125)">
+                <circle r="26" fill="none" stroke="#8fc7dd" stroke-width="1.8"/>
+                <path d="M-13 10 L-4 0 L3 6 L13 -9" fill="none" stroke="#f2a83b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13 -9 L5 -9 M13 -9 L13 -1" stroke="#f2a83b" stroke-width="2.4" stroke-linecap="round"/>
+              </g>
+              <!-- flow arrows -->
+              <path d="M104 125 L162 125 M238 125 L296 125" stroke="rgba(242,168,59,.55)" stroke-width="1.8"/>
+              <path d="M156 120 L164 125 L156 130 Z M290 120 L298 125 L290 130 Z" fill="rgba(242,168,59,.75)"/>
+              <!-- ambient dust -->
+              <circle cx="60" cy="50" r="2.4" fill="rgba(242,168,59,.5)"/>
+              <circle cx="345" cy="205" r="2.6" fill="rgba(143,199,221,.45)"/>
+              <circle cx="130" cy="205" r="2" fill="rgba(143,199,221,.4)"/>
+              <circle cx="280" cy="45" r="2" fill="rgba(242,168,59,.45)"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3>Reelflow <span class="project-badge badge-production">In Production</span></h3>
+            <p>An autonomous marketing engine — an AI content factory that hunts trends, scripts and assembles short-form video, publishes on schedule, and reinvests in whatever earns. Ideation → production → monetization, with near-zero human effort.</p>
+            <ul class="project-tags"><li>AI</li><li>n8n</li><li>Automation</li><li>Short-form Video</li><li>SEO Blogs</li><li>Affiliate</li><li>Plausible</li></ul>
+          </div>
+        </article>
+
+        <article class="project-card tilt reveal">
+          <div class="project-cover">
+            <svg viewBox="0 0 400 250" aria-hidden="true">
+              <rect width="400" height="250" fill="#0d1320"/>
+              <path d="M0 200 L60 170 L120 185 L180 120 L240 140 L300 80 L360 95 L400 60 L400 250 L0 250 Z"
+                    fill="rgba(242,168,59,.12)"/>
+              <path d="M0 200 L60 170 L120 185 L180 120 L240 140 L300 80 L360 95 L400 60"
+                    fill="none" stroke="#f2a83b" stroke-width="2.5" stroke-linejoin="round"/>
+              <g stroke-width="6">
+                <line x1="90" y1="120" x2="90" y2="165" stroke="#8fc7dd"/>
+                <line x1="150" y1="95" x2="150" y2="150" stroke="#f2a83b"/>
+                <line x1="210" y1="75" x2="210" y2="125" stroke="#8fc7dd"/>
+                <line x1="270" y1="50" x2="270" y2="105" stroke="#f2a83b"/>
+              </g>
+              <circle cx="330" cy="45" r="16" fill="none" stroke="rgba(242,168,59,.5)" stroke-width="1.5"/>
+              <path d="M318 45 Q 330 37 342 45 Q 330 52 318 45 Z" fill="#f2a83b"/>
+              <circle cx="330" cy="44.5" r="3" fill="#0a0c10"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3>Safe Investment System <span class="project-badge badge-live">Live</span></h3>
+            <p>Arabic-first investment management platform — portfolios, live analytics and RTL dashboards built for clarity under pressure.</p>
+            <ul class="project-tags"><li>React 18</li><li>TypeScript</li><li>Supabase</li><li>Recharts</li></ul>
+            <a class="project-link" href="https://app.safeinvestment.work/" target="_blank" rel="noopener">Visit project ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card tilt reveal">
+          <div class="project-cover">
+            <svg viewBox="0 0 400 250" aria-hidden="true">
+              <rect width="400" height="250" fill="#0d1320"/>
+              <path d="M40 210 Q 120 190 150 130 T 300 70 L 355 45"
+                    fill="none" stroke="#8fc7dd" stroke-width="2" stroke-dasharray="7 8" opacity=".8"/>
+              <g>
+                <circle cx="40" cy="210" r="7" fill="#f2a83b"/>
+                <circle cx="150" cy="130" r="5" fill="#8fc7dd"/>
+                <circle cx="300" cy="70" r="5" fill="#8fc7dd"/>
+                <path d="M355 45 L347 22 L369 34 Z" fill="#f2a83b"/>
+              </g>
+              <g fill="none" stroke="rgba(233,230,223,.14)" stroke-width="1.4">
+                <rect x="250" y="150" width="110" height="66" rx="8"/>
+                <line x1="262" y1="168" x2="330" y2="168"/>
+                <line x1="262" y1="184" x2="348" y2="184"/>
+                <line x1="262" y1="200" x2="316" y2="200"/>
+              </g>
+              <g fill="rgba(242,168,59,.55)">
+                <circle cx="76" cy="90" r="2.4"/><circle cx="210" cy="180" r="2.4"/><circle cx="115" cy="55" r="2"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3>Smart Delivery System <span class="project-badge badge-live">Live</span></h3>
+            <p>End-to-end parcel logistics on one modular core — admin dashboard, PWA driver app and supplier portal moving in sync.</p>
+            <ul class="project-tags"><li>PWA</li><li>Realtime</li><li>Dashboard</li><li>Multi-app</li></ul>
+            <a class="project-link" href="https://www.nextbit.work/" target="_blank" rel="noopener">Visit project ↗</a>
+          </div>
+        </article>
+
+      </div>
+      <p class="work-note reveal">Reelflow is the current flagship hunt — blog dropping soon. The rest are live and running.</p>
+    </section>
+
+    <!-- ══════════ Stats ══════════ -->
+    <section class="section stats" id="stats">
+      <div class="stats-grid">
+        <div class="stat reveal"><span class="stat-num" data-count="10">0</span><span class="stat-suffix">+</span><p>Products delivered</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="50">0</span><span class="stat-suffix">+</span><p>Processes automated</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="99">0</span><span class="stat-suffix">%</span><p>Vitals in the green</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="4">0</span><span class="stat-suffix">yrs</span><p>On the hunt</p></div>
+      </div>
+    </section>
+
+    <!-- ══════════ Founder ══════════ -->
+    <section class="section founder" id="founder">
+      <div class="founder-strip reveal">
+        <div class="founder-photo">
+          <img src="assets/images/founder.jpg" alt="Mahmoud Bargous, founder of Modulynx"
+               onerror="this.style.display='none'">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <radialGradient id="fpg" cx=".5" cy=".4" r=".7">
+                <stop offset="0" stop-color="#1d2635"/><stop offset="1" stop-color="#0b0f16"/>
+              </radialGradient>
+            </defs>
+            <rect width="120" height="120" fill="url(#fpg)"/>
+            <circle cx="60" cy="46" r="20" fill="#2a3547"/>
+            <path d="M24 108 Q 60 68 96 108 Z" fill="#2a3547"/>
+            <path d="M42 32 L36 18 L48 28 Z" fill="#f2a83b" opacity=".8"/>
+            <path d="M78 32 L84 18 L72 28 Z" fill="#f2a83b" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="founder-info">
+          <p class="section-eyebrow">THE ONE BEHIND THE EYES</p>
+          <h3>Mahmoud Bargous</h3>
+          <p class="founder-role">Founder — Full-Stack Engineer</p>
+          <p class="founder-bio">Building integrated systems since 2022 — frontends with instinct, backends that scale. Based in Amman, Jordan.</p>
+          <div class="founder-links">
+            <a href="https://github.com/mamobarjos" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/mamobarjos" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Contact ══════════ -->
+    <section class="section contact" id="contact">
+      <div class="contact-panel reveal">
+        <div class="contact-copy">
+          <p class="section-eyebrow">04 — START A PROJECT</p>
+          <h2 class="section-title">Ready when<br>you are.</h2>
+          <p class="contact-sub">Tell us what you're building. We'll answer within one hunt cycle — 24 hours.</p>
+          <p class="contact-direct">Or write directly: <a href="mailto:modulynx.project@gmail.com">modulynx.project@gmail.com</a></p>
+          <div class="contact-eyes" aria-hidden="true">
+            <span class="mini-eye"></span><span class="mini-eye"></span>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <label>Name<input type="text" name="name" required placeholder="Your name"></label>
+          <label>Email<input type="email" name="email" required placeholder="you@company.com"></label>
+          <label>Project<textarea name="message" rows="4" required placeholder="What are we hunting?"></textarea></label>
+          <button type="submit" class="btn btn-primary magnetic">Send the signal</button>
+          <p class="form-note" id="formNote" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════ Footer ══════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a class="nav-brand" href="#top">
+        <img class="brand-mark" src="logo/modulynx-logo.svg" alt="" width="40" height="40">
+        <span class="brand-word">MODU<em>LYNX</em></span>
+      </a>
+      <p class="footer-tag">Modular systems. Feline precision.</p>
+      <p class="footer-copy">© 2026 Modulynx. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/lynx-particles.js"></script>
+  <script src="js/lynx.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

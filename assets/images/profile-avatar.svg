@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="bgGrad" cx=".5" cy=".42" r=".75">
+      <stop offset="0" stop-color="#141b2b"/>
+      <stop offset=".55" stop-color="#0b0f16"/>
+      <stop offset="1" stop-color="#05070b"/>
+    </radialGradient>
+    <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2635"/>
+      <stop offset=".55" stop-color="#121826"/>
+      <stop offset="1" stop-color="#0b0f16"/>
+    </linearGradient>
+    <linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2a83b"/>
+      <stop offset=".5" stop-color="#8fc7dd"/>
+      <stop offset="1" stop-color="#f2a83b"/>
+    </linearGradient>
+    <radialGradient id="irisGrad" cx=".5" cy=".45" r=".65">
+      <stop offset="0" stop-color="#ffe9b0"/>
+      <stop offset=".45" stop-color="#ffc95e"/>
+      <stop offset="1" stop-color="#c97f16"/>
+    </radialGradient>
+    <radialGradient id="aura" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#f2a83b" stop-opacity=".22"/>
+      <stop offset=".7" stop-color="#f2a83b" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#f2a83b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="eyeGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)"/>
+
+  <!-- faint constellation dust -->
+  <g fill="#f2a83b">
+    <circle cx="180" cy="220" r="3" opacity=".35"/>
+    <circle cx="850" cy="180" r="2.4" opacity=".3"/>
+    <circle cx="905" cy="640" r="3" opacity=".25"/>
+    <circle cx="130" cy="700" r="2.2" opacity=".3"/>
+    <circle cx="760" cy="860" r="2.6" opacity=".22"/>
+    <circle cx="290" cy="880" r="2" opacity=".25"/>
+  </g>
+  <g fill="#8fc7dd">
+    <circle cx="300" cy="150" r="2.2" opacity=".3"/>
+    <circle cx="920" cy="360" r="2.4" opacity=".28"/>
+    <circle cx="90" cy="450" r="2.6" opacity=".26"/>
+    <circle cx="620" cy="930" r="2.2" opacity=".24"/>
+  </g>
+
+  <!-- amber aura behind the head -->
+  <circle cx="512" cy="500" r="430" fill="url(#aura)"/>
+
+  <!-- orbital ring accent -->
+  <circle cx="512" cy="512" r="452" fill="none" stroke="url(#edgeGrad)" stroke-width="3" opacity=".5"/>
+  <circle cx="512" cy="512" r="452" fill="none" stroke="#f2a83b" stroke-width="3" opacity=".55"
+          stroke-dasharray="70 2770" stroke-linecap="round" transform="rotate(-58 512 512)"/>
+
+  <!-- ══ the lynx, scaled 3.1x and centered ══ -->
+  <g transform="translate(140,110) scale(3.1)">
+    <!-- ear tufts -->
+    <path d="M57 26 L48 4 L66 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.4"/>
+    <path d="M183 26 L192 4 L174 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.4"/>
+    <!-- silhouette -->
+    <path d="M120 52 C 106 53, 95 57, 86 64 L 57 26 L 53 90 C 45 103, 41 115, 43 128
+             L 25 141 L 47 148 L 33 166 L 58 167 C 67 184, 85 197, 105 203
+             C 111 207, 115 209, 120 209 C 125 209, 129 207, 135 203
+             C 155 197, 173 184, 182 167 L 207 166 L 193 148 L 215 141 L 197 128
+             C 199 115, 195 103, 187 90 L 183 26 L 154 64 C 145 57, 134 53, 120 52 Z"
+          fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- inner ear shading -->
+    <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85"/>
+    <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85"/>
+    <!-- facet lines -->
+    <g stroke="#2a3547" stroke-width="1.1" fill="none" opacity=".9">
+      <path d="M120 52 L120 90"/>
+      <path d="M86 64 L104 96 L120 90 L136 96 L154 64"/>
+      <path d="M53 90 L74 104 L104 96"/>
+      <path d="M187 90 L166 104 L136 96"/>
+      <path d="M43 128 L74 128 L74 104"/>
+      <path d="M197 128 L166 128 L166 104"/>
+      <path d="M58 167 L86 152 L74 128"/>
+      <path d="M182 167 L154 152 L166 128"/>
+      <path d="M86 152 L104 168 L120 158 L136 168 L154 152"/>
+      <path d="M105 203 L104 168 M135 203 L136 168"/>
+    </g>
+    <!-- brow marks -->
+    <path d="M72 100 Q 88 92 102 99" stroke="#f2a83b" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"/>
+    <path d="M168 100 Q 152 92 138 99" stroke="#f2a83b" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"/>
+    <!-- eyes -->
+    <g filter="url(#eyeGlow)">
+      <path d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="url(#irisGrad)"/>
+      <ellipse cx="88" cy="113" rx="4.2" ry="8.4" fill="#0a0c10"/>
+      <circle cx="84" cy="109" r="2" fill="#fff6df" opacity=".9"/>
+      <path d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="url(#irisGrad)"/>
+      <ellipse cx="152" cy="113" rx="4.2" ry="8.4" fill="#0a0c10"/>
+      <circle cx="148" cy="109" r="2" fill="#fff6df" opacity=".9"/>
+    </g>
+    <!-- nose + mouth -->
+    <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9"/>
+    <path d="M120 162 L120 172 M120 172 Q 112 180 104 176 M120 172 Q 128 180 136 176"
+          stroke="#2a3547" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <!-- whiskers -->
+    <g stroke="#4a5670" stroke-width="1" opacity=".5" fill="none" stroke-linecap="round">
+      <path d="M96 160 Q 74 158 58 150"/>
+      <path d="M98 168 Q 78 170 64 166"/>
+      <path d="M144 160 Q 166 158 182 150"/>
+      <path d="M142 168 Q 162 170 176 166"/>
+    </g>
+  </g>
+
+  <!-- wordmark -->
+  <text x="512" y="868" text-anchor="middle"
+        font-family="'Space Grotesk','Segoe UI',sans-serif" font-weight="700"
+        font-size="52" letter-spacing="22" fill="#e9e6df">MODU<tspan fill="#f2a83b">LYNX</tspan></text>
+</svg>
