@@ -281,10 +281,11 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
 .marquee {
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   overflow: hidden; padding: 18px 0; background: var(--bg1);
+  direction: ltr; /* the infinite-loop math below assumes a left-anchored track */
 }
 .marquee-track {
   display: flex; gap: 42px; align-items: center; white-space: nowrap;
-  width: max-content;
+  width: max-content; direction: ltr;
   animation: marquee 28s linear infinite;
   font-family: var(--font-display); font-size: 14px; letter-spacing: .4em;
   color: var(--muted);
@@ -610,6 +611,10 @@ html[dir="rtl"] .hero-title,
 html[dir="rtl"] .section-title {
   letter-spacing: 0;
 }
+/* Tajawal's descenders (under ن، ق، ي…) need more room than the tight
+   Latin line-height gives, or the line-mask reveal clips them */
+html[dir="rtl"] .hero-title { line-height: 1.5; }
+html[dir="rtl"] .section-title { line-height: 1.35; }
 html[dir="rtl"] .project-badge { padding-left: 10px; padding-right: 10px; }
 html[dir="rtl"] .badge-live { padding-left: 10px; padding-right: 20px; }
 html[dir="rtl"] .badge-live::before { left: auto; right: 9px; }
