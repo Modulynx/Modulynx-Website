@@ -70,6 +70,34 @@
     });
   }
 
+  /* ── glow the eyebrow of whatever section a hash link lands on ── */
+  if (!reduced) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function () {
+        var id = a.getAttribute("href").slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        var eyebrow = target.querySelector(".section-eyebrow, .hero-eyebrow");
+        if (!eyebrow) return;
+        var fired = false;
+        var fire = function () {
+          if (fired) return;
+          fired = true;
+          eyebrow.classList.remove("nav-pulse");
+          void eyebrow.offsetWidth; // restart the animation if it's already mid-pulse
+          eyebrow.classList.add("nav-pulse");
+        };
+        if ("onscrollend" in window) {
+          var once = function () { window.removeEventListener("scrollend", once); fire(); };
+          window.addEventListener("scrollend", once);
+          setTimeout(fire, 1200); // fallback in case scrollend never fires
+        } else {
+          setTimeout(fire, 700);
+        }
+      });
+    });
+  }
+
   /* ── scroll reveals with stagger (fail-open: hidden state only
         exists once body.anim-ready is set) ── */
   if (!reduced && "IntersectionObserver" in window) {
@@ -105,6 +133,7 @@
         var p = Math.min((t - start) / DUR, 1);
         el.textContent = Math.round(easeOutExpo(p) * end);
         if (p < 1) requestAnimationFrame(step);
+        else el.classList.add("stat-pop"); // settle bounce once the count lands
       }
       if (reduced) { el.textContent = end; }
       else requestAnimationFrame(step);

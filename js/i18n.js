@@ -57,8 +57,8 @@
     "services.card4.body": "هويات مبنية كأنظمة متكاملة — شعار وخط ولون ولغة حركية تتكيّف مع كل وسيط.",
     "services.card5.title": "الأداء",
     "services.card5.body": "مؤشرات الأداء الأساسية دائماً في المنطقة الخضراء. نحلّل ونهذّب ونخزّن مؤقتاً حتى تُحمَّل الصفحات كردّة فعل.",
-    "services.card6.title": "الحراسة الليلية",
-    "services.card6.body": "مراقبة وصيانة وتطوير مستمر بعد الإطلاق. الوشق لا ينام أبداً على منتجك.",
+    "services.card6.title": "رعاية مستمرة",
+    "services.card6.body": "مراقبة وصيانة وتطوير مستمر بعد الإطلاق — نبقى قريبين مما نبنيه.",
 
     "work.eyebrow": "03 — أعمال مختارة",
     "work.title1": "أعمال قليلة.",
@@ -150,7 +150,7 @@
     document.head.appendChild(link);
   }
 
-  function apply(lang) {
+  function swapDom(lang) {
     var dict = lang === "ar" ? AR : EN;
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var key = el.getAttribute("data-i18n");
@@ -179,22 +179,33 @@
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
   }
 
+  /* animate = true for user-triggered toggles; the initial page-load
+     call skips the fade so there's no flash before anything is visible */
+  function apply(lang, animate) {
+    if (!animate || !document.body) { swapDom(lang); return; }
+    document.body.style.opacity = "0.35";
+    setTimeout(function () {
+      swapDom(lang);
+      document.body.style.opacity = "1";
+    }, 150);
+  }
+
   window.modulynxI18n = {
     t: function (key) { return (current === "ar" ? AR[key] : EN[key]) || key; },
-    setLang: function (lang) { apply(lang); },
+    setLang: function (lang) { apply(lang, true); },
     getLang: function () { return current; }
   };
 
   captureEnglish();
   var saved = "en";
   try { saved = localStorage.getItem(STORAGE_KEY) || "en"; } catch (e) {}
-  apply(saved);
+  apply(saved, false);
 
   document.addEventListener("DOMContentLoaded", function () {
     var btn = document.getElementById("langToggle");
     if (btn) {
       btn.addEventListener("click", function () {
-        apply(current === "ar" ? "en" : "ar");
+        apply(current === "ar" ? "en" : "ar", true);
       });
     }
   });
