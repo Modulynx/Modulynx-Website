@@ -4,7 +4,7 @@
 
 The marketing site for **Modulynx** — a modular digital studio building cinematic interfaces, motion-driven products, and systems that feel alive. Centered on a living lynx mascot whose eyes track the cursor, blinks, and reacts to interaction.
 
-**Live site:** _add the Netlify/production URL here once deployed_
+**Live site:** _https://modulynx.netlify.app_
 
 ## Features
 
