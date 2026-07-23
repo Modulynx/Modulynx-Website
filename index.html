@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modulynx — Modular Systems, Feline Precision</title>
+  <title data-i18n="meta.title">Modulynx — Modular Systems, Feline Precision</title>
   <meta name="description" content="Modulynx builds modular digital systems with predatory precision — interfaces, motion and architecture that feel alive.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
@@ -45,19 +45,20 @@
 
   <!-- ══════════ Navigation ══════════ -->
   <nav class="nav" id="nav">
-    <a class="nav-brand" href="#top" aria-label="Modulynx home">
+    <a class="nav-brand" href="#top" data-i18n-aria-label="nav.brandAria" aria-label="Modulynx home">
       <img class="brand-mark" src="logo/modulynx-logo.svg" alt="" width="40" height="40">
       <span class="brand-word">MODU<em>LYNX</em></span>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" data-i18n-aria-label="nav.toggleAria" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span>
     </button>
     <div class="nav-links" id="navLinks">
-      <a href="#about" class="nav-link">The Lynx Way</a>
-      <a href="#services" class="nav-link">Capabilities</a>
-      <a href="#work" class="nav-link">Selected Work</a>
-      <a href="#stats" class="nav-link">Track Record</a>
-      <a href="#contact" class="nav-link nav-cta magnetic">Start a Project</a>
+      <a href="#about" class="nav-link" data-i18n="nav.way">The Lynx Way</a>
+      <a href="#services" class="nav-link" data-i18n="nav.capabilities">Capabilities</a>
+      <a href="#work" class="nav-link" data-i18n="nav.work">Selected Work</a>
+      <a href="#stats" class="nav-link" data-i18n="nav.track">Track Record</a>
+      <a href="#contact" class="nav-link nav-cta magnetic" data-i18n="nav.cta">Start a Project</a>
+      <button type="button" id="langToggle" class="lang-toggle magnetic" aria-label="Switch language">العربية</button>
     </div>
   </nav>
 
@@ -70,7 +71,7 @@
       <!-- The living lynx -->
       <div class="lynx-stage" id="lynxStage">
         <div class="lynx-aura" aria-hidden="true"></div>
-        <svg id="lynxSvg" class="lynx-svg" viewBox="0 0 240 240" role="img" aria-label="Modulynx lynx emblem">
+        <svg id="lynxSvg" class="lynx-svg" viewBox="0 0 240 240" role="img" data-i18n-aria-label="hero.lynxAria" aria-label="Modulynx lynx emblem">
           <defs>
             <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#1d2635"/>
@@ -170,25 +171,25 @@
       </div>
 
       <div class="hero-copy">
-        <p class="hero-eyebrow reveal">MODULAR DIGITAL STUDIO</p>
+        <p class="hero-eyebrow reveal" data-i18n="hero.eyebrow">MODULAR DIGITAL STUDIO</p>
         <h1 class="hero-title">
-          <span class="line-mask"><span class="line">Built with the</span></span>
-          <span class="line-mask"><span class="line accent">eyes of a lynx.</span></span>
+          <span class="line-mask"><span class="line" data-i18n="hero.line1">Built with the</span></span>
+          <span class="line-mask"><span class="line accent" data-i18n="hero.line2">eyes of a lynx.</span></span>
         </h1>
-        <p class="hero-sub reveal">
+        <p class="hero-sub reveal" data-i18n="hero.sub">
           Modulynx engineers modular systems, cinematic interfaces and living motion —
           products that watch, react and move like something alive.
         </p>
         <div class="hero-actions reveal">
-          <a href="#contact" class="btn btn-primary magnetic">Start a Project</a>
-          <a href="#about" class="btn btn-ghost magnetic">See how we hunt</a>
+          <a href="#contact" class="btn btn-primary magnetic" data-i18n="hero.ctaPrimary">Start a Project</a>
+          <a href="#about" class="btn btn-ghost magnetic" data-i18n="hero.ctaSecondary">See how we hunt</a>
         </div>
       </div>
     </div>
 
-    <a href="#about" class="scroll-hint" aria-label="Scroll down">
+    <a href="#about" class="scroll-hint" data-i18n-aria-label="hero.scrollAria" aria-label="Scroll down">
       <span class="scroll-line"></span>
-      <span class="scroll-label">SCROLL</span>
+      <span class="scroll-label" data-i18n="hero.scrollLabel">SCROLL</span>
     </a>
   </header>
 
@@ -196,28 +197,28 @@
     <!-- ══════════ Marquee strip ══════════ -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>PRECISION</span><i>◆</i><span>MODULARITY</span><i>◆</i><span>MOTION</span><i>◆</i><span>INSTINCT</span><i>◆</i>
-        <span>PRECISION</span><i>◆</i><span>MODULARITY</span><i>◆</i><span>MOTION</span><i>◆</i><span>INSTINCT</span><i>◆</i>
-        <span>PRECISION</span><i>◆</i><span>MODULARITY</span><i>◆</i><span>MOTION</span><i>◆</i><span>INSTINCT</span><i>◆</i>
+        <span data-i18n="marquee.precision">PRECISION</span><i>◆</i><span data-i18n="marquee.modularity">MODULARITY</span><i>◆</i><span data-i18n="marquee.motion">MOTION</span><i>◆</i><span data-i18n="marquee.instinct">INSTINCT</span><i>◆</i>
+        <span data-i18n="marquee.precision">PRECISION</span><i>◆</i><span data-i18n="marquee.modularity">MODULARITY</span><i>◆</i><span data-i18n="marquee.motion">MOTION</span><i>◆</i><span data-i18n="marquee.instinct">INSTINCT</span><i>◆</i>
+        <span data-i18n="marquee.precision">PRECISION</span><i>◆</i><span data-i18n="marquee.modularity">MODULARITY</span><i>◆</i><span data-i18n="marquee.motion">MOTION</span><i>◆</i><span data-i18n="marquee.instinct">INSTINCT</span><i>◆</i>
       </div>
     </div>
 
     <!-- ══════════ About / The Lynx Way ══════════ -->
     <section class="section about" id="about">
       <div class="section-head reveal">
-        <p class="section-eyebrow">01 — THE LYNX WAY</p>
-        <h2 class="section-title">A lynx sees what others miss.<br><span class="dim">So do we.</span></h2>
+        <p class="section-eyebrow" data-i18n="about.eyebrow">01 — THE LYNX WAY</p>
+        <h2 class="section-title"><span data-i18n="about.title1">A lynx sees what others miss.</span><br><span class="dim" data-i18n="about.title2">So do we.</span></h2>
       </div>
       <div class="about-grid">
-        <p class="about-lead reveal">
+        <p class="about-lead reveal" data-i18n="about.lead">
           The lynx hunts by patience and precision — it studies the terrain, moves only when it matters,
           and never wastes a motion. We build software the same way: modular parts, deliberate motion,
           zero dead weight.
         </p>
         <ul class="about-list">
-          <li class="reveal"><span class="tick">◆</span><div><h3>Sharp vision</h3><p>We audit before we build. Every module earns its place in the system.</p></div></li>
-          <li class="reveal"><span class="tick">◆</span><div><h3>Silent speed</h3><p>Performance budgets from day one — interfaces that pounce, never lag.</p></div></li>
-          <li class="reveal"><span class="tick">◆</span><div><h3>Living motion</h3><p>Spring physics and cinematic timing make every screen feel awake.</p></div></li>
+          <li class="reveal"><span class="tick">◆</span><div><h3 data-i18n="about.item1.title">Sharp vision</h3><p data-i18n="about.item1.body">We audit before we build. Every module earns its place in the system.</p></div></li>
+          <li class="reveal"><span class="tick">◆</span><div><h3 data-i18n="about.item2.title">Silent speed</h3><p data-i18n="about.item2.body">Performance budgets from day one — interfaces that pounce, never lag.</p></div></li>
+          <li class="reveal"><span class="tick">◆</span><div><h3 data-i18n="about.item3.title">Living motion</h3><p data-i18n="about.item3.body">Spring physics and cinematic timing make every screen feel awake.</p></div></li>
         </ul>
       </div>
     </section>
@@ -225,39 +226,39 @@
     <!-- ══════════ Capabilities ══════════ -->
     <section class="section services" id="services">
       <div class="section-head reveal">
-        <p class="section-eyebrow">02 — CAPABILITIES</p>
-        <h2 class="section-title">Everything modular.<br><span class="dim">Everything alive.</span></h2>
+        <p class="section-eyebrow" data-i18n="services.eyebrow">02 — CAPABILITIES</p>
+        <h2 class="section-title"><span data-i18n="services.title1">Everything modular.</span><br><span class="dim" data-i18n="services.title2">Everything alive.</span></h2>
       </div>
       <div class="cards">
         <article class="card tilt reveal">
           <div class="card-icon">⬡</div>
-          <h3>Modular Architecture</h3>
-          <p>Design systems and component libraries that scale — assembled like vertebrae, not glued like bricks.</p>
+          <h3 data-i18n="services.card1.title">Modular Architecture</h3>
+          <p data-i18n="services.card1.body">Design systems and component libraries that scale — assembled like vertebrae, not glued like bricks.</p>
         </article>
         <article class="card tilt reveal">
           <div class="card-icon">◈</div>
-          <h3>Interface Engineering</h3>
-          <p>Production-grade web apps with obsessive attention to state, accessibility and detail.</p>
+          <h3 data-i18n="services.card2.title">Interface Engineering</h3>
+          <p data-i18n="services.card2.body">Production-grade web apps with obsessive attention to state, accessibility and detail.</p>
         </article>
         <article class="card tilt reveal">
           <div class="card-icon">〰</div>
-          <h3>Motion &amp; Interaction</h3>
-          <p>Spring-driven animation, scroll choreography and micro-interactions with cinematic timing.</p>
+          <h3 data-i18n="services.card3.title">Motion &amp; Interaction</h3>
+          <p data-i18n="services.card3.body">Spring-driven animation, scroll choreography and micro-interactions with cinematic timing.</p>
         </article>
         <article class="card tilt reveal">
           <div class="card-icon">◐</div>
-          <h3>Brand Systems</h3>
-          <p>Identities built as systems — logo, type, color and motion language that flex across media.</p>
+          <h3 data-i18n="services.card4.title">Brand Systems</h3>
+          <p data-i18n="services.card4.body">Identities built as systems — logo, type, color and motion language that flex across media.</p>
         </article>
         <article class="card tilt reveal">
           <div class="card-icon">⚡</div>
-          <h3>Performance</h3>
-          <p>Core Web Vitals in the green. We profile, trim and cache until pages load like a reflex.</p>
+          <h3 data-i18n="services.card5.title">Performance</h3>
+          <p data-i18n="services.card5.body">Core Web Vitals in the green. We profile, trim and cache until pages load like a reflex.</p>
         </article>
         <article class="card tilt reveal">
           <div class="card-icon">☾</div>
-          <h3>Night Watch</h3>
-          <p>Monitoring, maintenance and iteration after launch. The lynx never sleeps on your product.</p>
+          <h3 data-i18n="services.card6.title">Night Watch</h3>
+          <p data-i18n="services.card6.body">Monitoring, maintenance and iteration after launch. The lynx never sleeps on your product.</p>
         </article>
       </div>
     </section>
@@ -265,8 +266,8 @@
     <!-- ══════════ Selected Work ══════════ -->
     <section class="section work" id="work">
       <div class="section-head reveal">
-        <p class="section-eyebrow">03 — SELECTED WORK</p>
-        <h2 class="section-title">Few kills.<br><span class="dim">All clean.</span></h2>
+        <p class="section-eyebrow" data-i18n="work.eyebrow">03 — SELECTED WORK</p>
+        <h2 class="section-title"><span data-i18n="work.title1">Few kills.</span><br><span class="dim" data-i18n="work.title2">All clean.</span></h2>
       </div>
       <div class="projects">
         <!-- ── Featured: Reelflow ── -->
@@ -304,8 +305,8 @@
             </svg>
           </div>
           <div class="project-body">
-            <h3>Reelflow <span class="project-badge badge-production">In Production</span></h3>
-            <p>An autonomous marketing engine — an AI content factory that hunts trends, scripts and assembles short-form video, publishes on schedule, and reinvests in whatever earns. Ideation → production → monetization, with near-zero human effort.</p>
+            <h3>Reelflow <span class="project-badge badge-production" data-i18n="badge.inProduction">In Production</span></h3>
+            <p data-i18n="work.reelflow.body">An autonomous marketing engine — an AI content factory that hunts trends, scripts and assembles short-form video, publishes on schedule, and reinvests in whatever earns. Ideation → production → monetization, with near-zero human effort.</p>
             <ul class="project-tags"><li>AI</li><li>n8n</li><li>Automation</li><li>Short-form Video</li><li>SEO Blogs</li><li>Affiliate</li><li>Plausible</li></ul>
           </div>
         </article>
@@ -330,12 +331,12 @@
             </svg>
           </div>
           <div class="project-body">
-            <h3>Safe Investment System <span class="project-badge badge-live">Live</span></h3>
-            <p>Arabic-first investment management platform — portfolios, live analytics and RTL dashboards built for clarity under pressure.</p>
+            <h3>Safe Investment System <span class="project-badge badge-live" data-i18n="badge.live">Live</span></h3>
+            <p data-i18n="work.safe.body">Arabic-first investment management platform — portfolios, live analytics and RTL dashboards built for clarity under pressure.</p>
             <ul class="project-tags"><li>React 18</li><li>TypeScript</li><li>Supabase</li><li>Recharts</li></ul>
             <div class="project-links">
-              <a class="project-link" href="https://app.safeinvestment.work/" target="_blank" rel="noopener">Visit project ↗</a>
-              <a class="project-link project-link-code" href="https://github.com/Modulynx/Investment-Management" target="_blank" rel="noopener">View code ↗</a>
+              <a class="project-link" href="https://app.safeinvestment.work/" target="_blank" rel="noopener" data-i18n="project.visit">Visit project ↗</a>
+              <a class="project-link project-link-code" href="https://github.com/Modulynx/Investment-Management" target="_blank" rel="noopener" data-i18n="project.code">View code ↗</a>
             </div>
           </div>
         </article>
@@ -364,27 +365,27 @@
             </svg>
           </div>
           <div class="project-body">
-            <h3>Smart Delivery System <span class="project-badge badge-live">Live</span></h3>
-            <p>End-to-end parcel logistics on one modular core — admin dashboard, PWA driver app and supplier portal moving in sync.</p>
+            <h3>Smart Delivery System <span class="project-badge badge-live" data-i18n="badge.live">Live</span></h3>
+            <p data-i18n="work.delivery.body">End-to-end parcel logistics on one modular core — admin dashboard, PWA driver app and supplier portal moving in sync.</p>
             <ul class="project-tags"><li>PWA</li><li>Realtime</li><li>Dashboard</li><li>Multi-app</li></ul>
             <div class="project-links">
-              <a class="project-link" href="https://www.nextbit.work/" target="_blank" rel="noopener">Visit project ↗</a>
-              <a class="project-link project-link-code" href="https://github.com/Modulynx/Delivery-System" target="_blank" rel="noopener">View code ↗</a>
+              <a class="project-link" href="https://www.nextbit.work/" target="_blank" rel="noopener" data-i18n="project.visit">Visit project ↗</a>
+              <a class="project-link project-link-code" href="https://github.com/Modulynx/Delivery-System" target="_blank" rel="noopener" data-i18n="project.code">View code ↗</a>
             </div>
           </div>
         </article>
 
       </div>
-      <p class="work-note reveal">Reelflow is the current flagship hunt — blog dropping soon. The rest are live and running.</p>
+      <p class="work-note reveal" data-i18n="work.note">Reelflow is the current flagship hunt — blog dropping soon. The rest are live and running.</p>
     </section>
 
     <!-- ══════════ Stats ══════════ -->
     <section class="section stats" id="stats">
       <div class="stats-grid">
-        <div class="stat reveal"><span class="stat-num" data-count="10">0</span><span class="stat-suffix">+</span><p>Products delivered</p></div>
-        <div class="stat reveal"><span class="stat-num" data-count="50">0</span><span class="stat-suffix">+</span><p>Processes automated</p></div>
-        <div class="stat reveal"><span class="stat-num" data-count="99">0</span><span class="stat-suffix">%</span><p>Vitals in the green</p></div>
-        <div class="stat reveal"><span class="stat-num" data-count="4">0</span><span class="stat-suffix">yrs</span><p>On the hunt</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="10">0</span><span class="stat-suffix">+</span><p data-i18n="stats.products">Products delivered</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="50">0</span><span class="stat-suffix">+</span><p data-i18n="stats.processes">Processes automated</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="99">0</span><span class="stat-suffix">%</span><p data-i18n="stats.vitals">Vitals in the green</p></div>
+        <div class="stat reveal"><span class="stat-num" data-count="4">0</span><span class="stat-suffix" data-i18n="stats.yrsSuffix">yrs</span><p data-i18n="stats.hunt">On the hunt</p></div>
       </div>
     </section>
 
@@ -392,7 +393,7 @@
     <section class="section founder" id="founder">
       <div class="founder-strip reveal">
         <div class="founder-photo">
-          <img src="assets/images/founder.jpg" alt="Mahmoud Bargous, founder of Modulynx"
+          <img src="assets/images/founder.jpg" data-i18n-alt="founder.photoAlt" alt="Mahmoud Bargous, founder of Modulynx"
                onerror="this.style.display='none'">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <defs>
@@ -408,14 +409,14 @@
           </svg>
         </div>
         <div class="founder-info">
-          <p class="section-eyebrow">THE ONE BEHIND THE EYES</p>
+          <p class="section-eyebrow" data-i18n="founder.eyebrow">THE ONE BEHIND THE EYES</p>
           <h3>Mahmoud Bargous</h3>
-          <p class="founder-role">Founder — Full-Stack Engineer</p>
-          <p class="founder-bio">Building integrated systems since 2022 — frontends with instinct, backends that scale. Based in Amman, Jordan.</p>
+          <p class="founder-role" data-i18n="founder.role">Founder — Full-Stack Developer</p>
+          <p class="founder-bio" data-i18n="founder.bio">Building integrated systems since 2022 — frontends with instinct, backends that scale. Based in Amman, Jordan.</p>
           <div class="founder-links">
-            <a href="https://github.com/mamobarjos" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/mamobarjos" target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a href="https://github.com/Modulynx" target="_blank" rel="noopener">Modulynx on GitHub ↗</a>
+            <a href="https://github.com/mamobarjos" target="_blank" rel="noopener" data-i18n="founder.github">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/mamobarjos" target="_blank" rel="noopener" data-i18n="founder.linkedin">LinkedIn ↗</a>
+            <a href="https://github.com/Modulynx" target="_blank" rel="noopener" data-i18n="founder.orgGithub">Modulynx on GitHub ↗</a>
           </div>
         </div>
       </div>
@@ -425,19 +426,19 @@
     <section class="section contact" id="contact">
       <div class="contact-panel reveal">
         <div class="contact-copy">
-          <p class="section-eyebrow">04 — START A PROJECT</p>
-          <h2 class="section-title">Ready when<br>you are.</h2>
-          <p class="contact-sub">Tell us what you're building. We'll answer within one hunt cycle — 24 hours.</p>
-          <p class="contact-direct">Or write directly: <a href="mailto:modulynx.project@gmail.com">modulynx.project@gmail.com</a></p>
+          <p class="section-eyebrow" data-i18n="contact.eyebrow">04 — START A PROJECT</p>
+          <h2 class="section-title"><span data-i18n="contact.title1">Ready when</span><br><span data-i18n="contact.title2">you are.</span></h2>
+          <p class="contact-sub" data-i18n="contact.sub">Tell us what you're building. We'll answer within one hunt cycle — 24 hours.</p>
+          <p class="contact-direct"><span data-i18n="contact.directPrefix">Or write directly:</span> <a href="mailto:modulynx.project@gmail.com">modulynx.project@gmail.com</a></p>
           <div class="contact-eyes" aria-hidden="true">
             <span class="mini-eye"></span><span class="mini-eye"></span>
           </div>
         </div>
         <form class="contact-form" id="contactForm" novalidate>
-          <label>Name<input type="text" name="name" required placeholder="Your name"></label>
-          <label>Email<input type="email" name="email" required placeholder="you@company.com"></label>
-          <label>Project<textarea name="message" rows="4" required placeholder="What are we hunting?"></textarea></label>
-          <button type="submit" class="btn btn-primary magnetic">Send the signal</button>
+          <label><span data-i18n="contact.nameLabel">Name</span><input type="text" name="name" required placeholder="Your name" data-i18n-placeholder="contact.namePh"></label>
+          <label><span data-i18n="contact.emailLabel">Email</span><input type="email" name="email" required placeholder="you@company.com"></label>
+          <label><span data-i18n="contact.projectLabel">Project</span><textarea name="message" rows="4" required placeholder="What are we hunting?" data-i18n-placeholder="contact.projectPh"></textarea></label>
+          <button type="submit" class="btn btn-primary magnetic" data-i18n="contact.send">Send the signal</button>
           <p class="form-note" id="formNote" role="status"></p>
         </form>
       </div>
@@ -451,11 +452,12 @@
         <img class="brand-mark" src="logo/modulynx-logo.svg" alt="" width="40" height="40">
         <span class="brand-word">MODU<em>LYNX</em></span>
       </a>
-      <p class="footer-tag">Modular systems. Feline precision.</p>
-      <p class="footer-copy">© 2026 Modulynx. All rights reserved.</p>
+      <p class="footer-tag" data-i18n="footer.tag">Modular systems. Feline precision.</p>
+      <p class="footer-copy">© 2026 Modulynx. <span data-i18n="footer.rights">All rights reserved.</span></p>
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/lynx-particles.js"></script>
   <script src="js/lynx.js"></script>
   <script src="js/main.js"></script>

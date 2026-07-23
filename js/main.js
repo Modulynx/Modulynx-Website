@@ -154,15 +154,16 @@
       var name = form.elements.name.value.trim();
       var email = form.elements.email.value.trim();
       var msg = form.elements.message.value.trim();
+      var t = window.modulynxI18n ? window.modulynxI18n.t : function (k) { return k; };
       if (!name || !email || !msg || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        note.textContent = "Please fill every field with a valid email.";
+        note.textContent = t("form.invalid");
         note.style.color = "#e88";
         return;
       }
       var btn = form.querySelector("button[type=submit]");
       btn.disabled = true;
       note.style.color = "";
-      note.textContent = "Sending the signal…";
+      note.textContent = t("form.sending");
       fetch("https://formsubmit.co/ajax/modulynx.project@gmail.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -182,12 +183,11 @@
       }).then(function (json) {
         // FormSubmit returns success as the string "true"/"false"
         if (String(json.success) !== "true") throw new Error(json.message || "Send failed");
-        note.textContent = "Signal received — the lynx is on the move. We'll reply within 24h.";
+        note.textContent = t("form.success");
         form.reset();
       }).catch(function () {
         note.style.color = "#e88";
-        note.innerHTML = "Could not send right now — email us directly at " +
-          '<a href="mailto:modulynx.project@gmail.com" style="color:#8fc7dd">modulynx.project@gmail.com</a>.';
+        note.innerHTML = t("form.error");
       }).finally(function () {
         btn.disabled = false;
       });

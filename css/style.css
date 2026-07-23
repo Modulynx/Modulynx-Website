@@ -151,6 +151,14 @@ a, button { cursor: none; }
 .nav-cta::after { display: none; }
 .nav-cta:hover { color: var(--bg0); background: var(--amber-hi); }
 .nav-toggle { display: none; }
+.lang-toggle {
+  color: var(--ice); background: transparent; cursor: none;
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  padding: 7px 16px; border-radius: 999px;
+  border: 1px solid rgba(143, 199, 221, .35);
+  transition: color .3s, border-color .3s, transform .3s;
+}
+.lang-toggle:hover { color: var(--amber-hi); border-color: rgba(242, 168, 59, .5); }
 
 /* ══════════ Hero ══════════ */
 .hero {
@@ -554,7 +562,40 @@ body.anim-ready .reveal.in {
   }
   .nav-links.open { opacity: 1; visibility: visible; }
   .nav-links .nav-link { font-size: 22px; }
+  .nav-links .lang-toggle { align-self: center; font-size: 16px; }
 }
+
+/* ══════════ Arabic / RTL ══════════ */
+html[dir="rtl"] body {
+  font-family: "Tajawal", var(--font-body);
+}
+html[dir="rtl"] .brand-word,
+html[dir="rtl"] .preloader-word {
+  font-family: var(--font-display); /* keep the Latin wordmark as-authored */
+}
+html[dir="rtl"] .hero-eyebrow,
+html[dir="rtl"] .section-eyebrow,
+html[dir="rtl"] .scroll-label,
+html[dir="rtl"] .marquee-track,
+html[dir="rtl"] .nav-link,
+html[dir="rtl"] .btn,
+html[dir="rtl"] .project-badge,
+html[dir="rtl"] .project-link,
+html[dir="rtl"] .work-note,
+html[dir="rtl"] .founder-role,
+html[dir="rtl"] .stat p,
+html[dir="rtl"] .contact-form label,
+html[dir="rtl"] .footer-tag,
+html[dir="rtl"] .lang-toggle {
+  letter-spacing: normal;
+}
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .section-title {
+  letter-spacing: 0;
+}
+html[dir="rtl"] .project-badge { padding-left: 10px; padding-right: 10px; }
+html[dir="rtl"] .badge-live { padding-left: 10px; padding-right: 20px; }
+html[dir="rtl"] .badge-live::before { left: auto; right: 9px; }
 
 /* ══════════ Reduced motion ══════════ */
 @media (prefers-reduced-motion: reduce) {
