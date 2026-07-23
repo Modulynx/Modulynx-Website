@@ -171,7 +171,7 @@
           "Full Name": name,
           "Email Address": email,
           "Project Details": msg,
-          _subject: "Modulynx — new project signal from " + name,
+          _subject: "Modulynx — new project inquiry from " + name,
           _cc: "mamobarjos@gmail.com",
           _replyto: email,
           _template: "table",

@@ -24,7 +24,7 @@
     "hero.line2": "ثاقبة كعين الوشق.",
     "hero.sub": "تصمم Modulynx أنظمة معيارية وواجهات سينمائية وحركة نابضة بالحياة — منتجات تراقب وتتفاعل وتتحرك وكأنها كائن حي.",
     "hero.ctaPrimary": "ابدأ مشروعك",
-    "hero.ctaSecondary": "اكتشف أسلوبنا في الصيد",
+    "hero.ctaSecondary": "شاهد أسلوبنا",
     "hero.scrollAria": "مرر للأسفل",
     "hero.scrollLabel": "مرر",
 
@@ -36,7 +36,7 @@
     "about.eyebrow": "01 — منهج الوشق",
     "about.title1": "الوشق يرى ما يغفل عنه غيره.",
     "about.title2": "ونحن كذلك.",
-    "about.lead": "يصطاد الوشق بصبرٍ ودقة — يدرس الأرض جيداً، ولا يتحرك إلا حين يستحق الأمر، ولا يهدر حركة واحدة بلا طائل. نبني البرمجيات بالطريقة ذاتها: أجزاء معيارية، حركة مدروسة، ولا شيء زائد.",
+    "about.lead": "يتحرك الوشق بصبرٍ ودقة — يدرس محيطه جيداً، ولا يتحرك إلا حين يستحق الأمر، ولا يهدر حركة واحدة بلا طائل. نبني البرمجيات بالطريقة ذاتها: أجزاء معيارية، حركة مدروسة، ولا شيء زائد.",
     "about.item1.title": "رؤية ثاقبة",
     "about.item1.body": "ندرس قبل أن نبني. كل وحدة تكتسب مكانها في النظام باستحقاق.",
     "about.item2.title": "سرعة صامتة",
@@ -61,8 +61,8 @@
     "services.card6.body": "مراقبة وصيانة وتطوير مستمر بعد الإطلاق. الوشق لا ينام أبداً على منتجك.",
 
     "work.eyebrow": "03 — أعمال مختارة",
-    "work.title1": "إنجازات قليلة.",
-    "work.title2": "كلها بلا تنازلات.",
+    "work.title1": "أعمال قليلة.",
+    "work.title2": "كل واحدة مدروسة.",
     "work.reelflow.body": "محرك تسويق شبه مستقل — مصنع محتوى مدعوم بالذكاء الاصطناعي يرصد الترندات، يكتب النصوص، وينتج فيديوهات قصيرة، ثم ينشرها وفق جدول زمني، ويعيد استثمار الجهد في كل ما يحقق عائداً. من الفكرة إلى الإنتاج إلى الربح، بأقل تدخل بشري ممكن.",
     "work.safe.body": "منصة لإدارة الاستثمار مصممة أولاً للمستخدم العربي — محافظ استثمارية، تحليلات لحظية، ولوحات تحكم بتنسيق RTL مبنية لتمنح وضوحاً حتى في أوقات الضغط.",
     "work.delivery.body": "نظام لوجستي متكامل لإدارة الشحنات من طرف إلى طرف على نواة معيارية واحدة — لوحة تحكم إدارية، وتطبيق سائق PWA، وبوابة موردين، كلها تعمل بتناغم.",
@@ -89,14 +89,14 @@
     "contact.eyebrow": "04 — ابدأ مشروعك",
     "contact.title1": "جاهزون",
     "contact.title2": "حين تكون جاهزاً.",
-    "contact.sub": "أخبرنا بما تبنيه. سنرد خلال دورة اصطياد واحدة — 24 ساعة.",
+    "contact.sub": "أخبرنا بما تبنيه. سنرد خلال 24 ساعة.",
     "contact.directPrefix": "أو راسلنا مباشرة:",
     "contact.nameLabel": "الاسم",
     "contact.namePh": "اسمك الكامل",
     "contact.emailLabel": "البريد الإلكتروني",
     "contact.projectLabel": "المشروع",
-    "contact.projectPh": "ما الذي نصطاده معاً؟",
-    "contact.send": "أرسل الإشارة",
+    "contact.projectPh": "ما الذي نبنيه معاً؟",
+    "contact.send": "أرسل الرسالة",
 
     "footer.tag": "أنظمة معيارية. دقة الوشق.",
     "footer.rights": "جميع الحقوق محفوظة.",
@@ -104,8 +104,8 @@
     "meta.title": "Modulynx — أنظمة معيارية بدقة الوشق",
 
     "form.invalid": "يرجى تعبئة كل الحقول ببريد إلكتروني صحيح.",
-    "form.sending": "جارٍ إرسال الإشارة…",
-    "form.success": "تم استلام الإشارة — الوشق في طريقه. سنرد خلال 24 ساعة.",
+    "form.sending": "جارٍ الإرسال…",
+    "form.success": "تم استلام رسالتك — نحن نعمل عليها. سنرد خلال 24 ساعة.",
     "form.error": "تعذّر الإرسال الآن — راسلنا مباشرة على " +
       '<a href="mailto:modulynx.project@gmail.com" style="color:#8fc7dd">modulynx.project@gmail.com</a>.'
   };
@@ -113,8 +113,8 @@
   /* ── English originals not present as static DOM text ── */
   var EN_MANUAL = {
     "form.invalid": "Please fill every field with a valid email.",
-    "form.sending": "Sending the signal…",
-    "form.success": "Signal received — the lynx is on the move. We'll reply within 24h.",
+    "form.sending": "Sending…",
+    "form.success": "Message received — we're on it. We'll reply within 24h.",
     "form.error": "Could not send right now — email us directly at " +
       '<a href="mailto:modulynx.project@gmail.com" style="color:#8fc7dd">modulynx.project@gmail.com</a>.'
   };
