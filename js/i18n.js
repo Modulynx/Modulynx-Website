@@ -85,6 +85,7 @@
     "founder.linkedin": "LinkedIn ↗",
     "founder.orgGithub": "Modulynx على GitHub ↗",
     "founder.photoAlt": "محمود برجوس، مؤسس Modulynx",
+    "scrollLynx.aria": "العودة للأعلى",
 
     "contact.eyebrow": "04 — ابدأ مشروعك",
     "contact.title1": "جاهزون",

@@ -551,6 +551,35 @@ body.anim-ready .reveal.in {
 .footer-tag { color: var(--muted); font-size: 14px; letter-spacing: .06em; }
 .footer-copy { color: #5b6472; font-size: 13px; }
 
+/* ══════════ Scroll companion lynx ══════════ */
+.scroll-lynx {
+  position: fixed; right: 22px; bottom: 22px; z-index: 60;
+  width: 60px; height: 60px; padding: 0; border: none; background: none;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateY(12px) scale(.9);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-spring), visibility .4s;
+}
+.scroll-lynx.visible { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1); }
+.scroll-lynx-ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.scroll-lynx-ring-track { fill: rgba(11, 15, 22, .82); stroke: rgba(233, 230, 223, .12); stroke-width: 3; }
+.scroll-lynx-ring-fill {
+  fill: none; stroke: var(--amber); stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 326.73; stroke-dashoffset: 326.73;
+  transition: stroke-dashoffset .1s linear, stroke .3s;
+}
+.scroll-lynx:hover .scroll-lynx-ring-fill { stroke: var(--amber-hi); }
+.scroll-lynx-face {
+  position: absolute; inset: 13px; width: calc(100% - 26px); height: calc(100% - 26px);
+  filter: drop-shadow(0 0 6px rgba(242, 168, 59, .3));
+  transition: transform .3s var(--ease-spring);
+}
+.scroll-lynx:hover .scroll-lynx-face { transform: scale(1.06); }
+#scrollPupilL, #scrollPupilR { transition: transform .25s var(--ease-out); }
+@media (max-width: 640px) {
+  .scroll-lynx { right: 16px; bottom: 16px; width: 50px; height: 50px; }
+  .scroll-lynx-face { inset: 11px; width: calc(100% - 22px); height: calc(100% - 22px); }
+}
+
 /* ══════════ Responsive ══════════ */
 @media (max-width: 960px) {
   .about-grid, .contact-panel { grid-template-columns: 1fr; }

@@ -54,6 +54,53 @@
     lastY = y;
   }, { passive: true });
 
+  /* ── scroll companion: a lynx that tracks reading progress ──
+        ring fills with how far down the page you are; its gaze
+        dips or lifts with the direction you're scrolling; a click
+        takes you back to the top. */
+  (function () {
+    var lynx = document.getElementById("scrollLynx");
+    var fill = document.getElementById("scrollLynxFill");
+    var pupilL = document.getElementById("scrollPupilL");
+    var pupilR = document.getElementById("scrollPupilR");
+    if (!lynx || !fill) return;
+    var CIRC = 326.73;
+    var prevY = window.scrollY;
+    var settleTimer = null;
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var y = window.scrollY;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = max > 0 ? Math.min(Math.max(y / max, 0), 1) : 0;
+      fill.style.strokeDashoffset = String(CIRC * (1 - progress));
+      lynx.classList.toggle("visible", y > 480);
+
+      if (!reduced && pupilL && pupilR) {
+        var dy = y - prevY;
+        var look = dy > 0.5 ? 2.6 : dy < -0.5 ? -2.6 : 0;
+        pupilL.style.transform = "translateY(" + look + "px)";
+        pupilR.style.transform = "translateY(" + look + "px)";
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(function () {
+          pupilL.style.transform = "translateY(0)";
+          pupilR.style.transform = "translateY(0)";
+        }, 220);
+      }
+      prevY = y;
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+
+    lynx.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+  })();
+
   /* ── mobile menu ── */
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");

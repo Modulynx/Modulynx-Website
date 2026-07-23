@@ -457,6 +457,30 @@
     </div>
   </footer>
 
+  <!-- ══════════ Scroll companion: a lynx that tracks your progress ══════════ -->
+  <button type="button" id="scrollLynx" class="scroll-lynx" data-i18n-aria-label="scrollLynx.aria" aria-label="Back to top">
+    <svg viewBox="0 0 120 120" class="scroll-lynx-ring" aria-hidden="true">
+      <circle class="scroll-lynx-ring-track" cx="60" cy="60" r="52"/>
+      <circle class="scroll-lynx-ring-fill" id="scrollLynxFill" cx="60" cy="60" r="52"/>
+    </svg>
+    <svg viewBox="0 0 240 240" class="scroll-lynx-face" aria-hidden="true">
+      <path d="M57 26 L48 4 L66 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="2"/>
+      <path d="M183 26 L192 4 L174 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="2"/>
+      <path d="M120 52 C 106 53, 95 57, 86 64 L 57 26 L 53 90 C 45 103, 41 115, 43 128
+               L 25 141 L 47 148 L 33 166 L 58 167 C 67 184, 85 197, 105 203
+               C 111 207, 115 209, 120 209 C 125 209, 129 207, 135 203
+               C 155 197, 173 184, 182 167 L 207 166 L 193 148 L 215 141 L 197 128
+               C 199 115, 195 103, 187 90 L 183 26 L 154 64 C 145 57, 134 53, 120 52 Z"
+            fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="2" stroke-linejoin="round"/>
+      <g id="scrollLynxEyes">
+        <path d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="url(#irisGrad)"/>
+        <ellipse id="scrollPupilL" cx="88" cy="113" rx="5" ry="10" fill="#0a0c10"/>
+        <path d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="url(#irisGrad)"/>
+        <ellipse id="scrollPupilR" cx="152" cy="113" rx="5" ry="10" fill="#0a0c10"/>
+      </g>
+    </svg>
+  </button>
+
   <script src="js/i18n.js"></script>
   <script src="js/lynx-particles.js"></script>
   <script src="js/lynx.js"></script>
