@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#0d1320"/>
+  <path d="M80 420 Q 240 380 300 260 T 600 140 L 710 90"
+        fill="none" stroke="#8fc7dd" stroke-width="4" stroke-dasharray="14 16" opacity=".8"/>
+  <g>
+    <circle cx="80" cy="420" r="14" fill="#f2a83b"/>
+    <circle cx="300" cy="260" r="10" fill="#8fc7dd"/>
+    <circle cx="600" cy="140" r="10" fill="#8fc7dd"/>
+    <path d="M710 90 L694 44 L738 68 Z" fill="#f2a83b"/>
+  </g>
+  <g fill="none" stroke="rgba(233,230,223,.16)" stroke-width="2.8">
+    <rect x="500" y="300" width="220" height="132" rx="16"/>
+    <line x1="524" y1="336" x2="660" y2="336"/>
+    <line x1="524" y1="368" x2="696" y2="368"/>
+    <line x1="524" y1="400" x2="632" y2="400"/>
+  </g>
+  <g fill="rgba(242,168,59,.55)">
+    <circle cx="152" cy="180" r="4.8"/><circle cx="420" cy="360" r="4.8"/><circle cx="230" cy="110" r="4"/>
+  </g>
+  <text x="40" y="450" font-family="'Space Grotesk','Segoe UI',sans-serif" font-weight="700" font-size="30" fill="#e9e6df">Smart Delivery System</text>
+  <text x="40" y="478" font-family="'Inter','Segoe UI',sans-serif" font-size="16" fill="#8fc7dd" letter-spacing="1">MODULYNX — LIVE</text>
+</svg>

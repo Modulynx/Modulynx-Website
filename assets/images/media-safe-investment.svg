@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#0d1320"/>
+  <path d="M0 400 L120 340 L240 370 L360 240 L480 280 L600 160 L720 190 L800 120 L800 500 L0 500 Z"
+        fill="rgba(242,168,59,.12)"/>
+  <path d="M0 400 L120 340 L240 370 L360 240 L480 280 L600 160 L720 190 L800 120"
+        fill="none" stroke="#f2a83b" stroke-width="5" stroke-linejoin="round"/>
+  <g stroke-width="12">
+    <line x1="180" y1="240" x2="180" y2="330" stroke="#8fc7dd"/>
+    <line x1="300" y1="190" x2="300" y2="300" stroke="#f2a83b"/>
+    <line x1="420" y1="150" x2="420" y2="250" stroke="#8fc7dd"/>
+    <line x1="540" y1="100" x2="540" y2="210" stroke="#f2a83b"/>
+  </g>
+  <circle cx="660" cy="90" r="32" fill="none" stroke="rgba(242,168,59,.5)" stroke-width="3"/>
+  <path d="M636 90 Q 660 74 684 90 Q 660 104 636 90 Z" fill="#f2a83b"/>
+  <circle cx="660" cy="89" r="6" fill="#0a0c10"/>
+  <text x="40" y="450" font-family="'Space Grotesk','Segoe UI',sans-serif" font-weight="700" font-size="30" fill="#e9e6df">Safe Investment System</text>
+  <text x="40" y="478" font-family="'Inter','Segoe UI',sans-serif" font-size="16" fill="#8fc7dd" letter-spacing="1">MODULYNX — LIVE</text>
+</svg>
