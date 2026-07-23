@@ -167,11 +167,12 @@
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
-          name: name,
-          email: email,
-          message: msg,
+          "Full Name": name,
+          "Email Address": email,
+          "Project Details": msg,
           _subject: "Modulynx — new project signal from " + name,
           _cc: "mamobarjos@gmail.com",
+          _replyto: email,
           _template: "table",
           _captcha: "false"
         })
