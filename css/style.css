@@ -394,6 +394,16 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
   .hero-inner { padding: 56px 24px 30px; gap: 8px; }
   .hero-actions { margin-top: 20px; }
   .lynx-stage, .lynx-body-stage { width: clamp(140px, 16vw, 190px); }
+  /* .lynx-body-stage's top is a FIXED px gap below .lynx-stage's own top —
+     it doesn't automatically shrink just because .lynx-stage's width (and
+     so its whole rendered size) does here. Left at the unconstrained 60px,
+     the body/tail/hind-feet increasingly overshot the now-smaller head,
+     appearing to sag down behind the copy below — reported on an iPhone,
+     but reproducible on any narrow-enough desktop window too, since this
+     is a width-driven breakpoint, not iOS-specific. Scaled down to match
+     how much smaller the lynx itself gets in this tier (190/230 of the
+     unconstrained max width). */
+  .lynx-body-stage { top: 50px; }
   html[dir="rtl"] .hero-eyebrow { font-size: clamp(20px, 2.8vw, 26px); margin: 4px 0 0; }
   html[dir="rtl"] .hero-title { margin-top: 0; }
   /* the fixes above alone weren't enough on WIDE-but-not-tall screens (a
@@ -414,6 +424,10 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
 @media (max-height: 650px) {
   .hero-inner { padding: 24px 20px 18px; gap: 4px; }
   .lynx-stage, .lynx-body-stage { width: clamp(96px, 22vw, 140px); }
+  /* same reasoning as the tier above, scaled further to match (140/230 of
+     the unconstrained max width) — this tier is where the iPhone 7 case
+     actually landed. */
+  .lynx-body-stage { top: 36px; }
   .hero-title { font-size: clamp(28px, 8vw, 44px); margin: 4px 0 8px; }
   html[dir="rtl"] .hero-title { line-height: 1.25; margin-top: 0; }
   .hero-sub { font-size: 13px; }
