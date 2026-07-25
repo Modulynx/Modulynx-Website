@@ -22,6 +22,7 @@
   var shoulderL = document.querySelector(".shoulder-line-l");
   var shoulderR = document.querySelector(".shoulder-line-r");
   var bodySvg = document.querySelector(".lynx-body-svg");
+  var bodyStage = document.querySelector(".lynx-body-stage");
   var pawL = document.getElementById("pawL");
   var pawR = document.getElementById("pawR");
   // the tail's own control points, in order along the curve — index 0 is the
@@ -224,8 +225,29 @@
     // the X, form fields) — those already have their own dedicated
     // reactions (or none, for the nav-toggle's X), and getting a second,
     // generic mark on top of a real click reads as noise, not a reaction.
+    var isExcludedTarget = function (el) {
+      return !!(el && el.closest && el.closest("a, button, input, textarea, select, .nav-toggle"));
+    };
+    // iOS Safari only reliably synthesizes a "click" from a tap on elements
+    // it treats as interactive (links/buttons/form fields, or anything with
+    // cursor:pointer) — a tap on a plain div/section/paragraph often never
+    // fires click at all there, even though it does on every other touch
+    // browser (confirmed: worked on a touchscreen laptop, not on an
+    // iPhone). touchend fires unconditionally everywhere, so it's the
+    // reliable trigger; lastTouchTrigger skips the follow-up "click" on
+    // browsers where both fire for the same tap, so it doesn't double up.
+    var lastTouchTrigger = 0;
+    document.addEventListener("touchend", function (e) {
+      var touch = e.changedTouches && e.changedTouches[0];
+      if (!touch) return;
+      var target = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (isExcludedTarget(target)) return;
+      lastTouchTrigger = Date.now();
+      triggerSwipeAtPoint(touch.clientX, touch.clientY, 0, 0);
+    }, { passive: true });
     document.addEventListener("click", function (e) {
-      if (e.target.closest("a, button, input, textarea, select, .nav-toggle")) return;
+      if (Date.now() - lastTouchTrigger < 500) return; // already handled via touchend just now
+      if (isExcludedTarget(e.target)) return;
       triggerSwipeAtPoint(e.clientX, e.clientY, 0, 0);
     });
     stage.addEventListener("mouseenter", function () { triggerSwipeAt(pawR, -12, 15); });
@@ -334,7 +356,7 @@
   //    approaching the lynx directly: fangs, claws, dilated pupils, AND the
   //    same body/tail motion intensity as being right next to it (forcing
   //    --claw-reveal to max) — like it's coiled and about to launch forward ──
-  var bodyStage = document.querySelector(".lynx-body-stage");
+  // (bodyStage is declared up top, alongside the other body-svg refs)
   var returnTimer = null;
   var excitementTriggers = document.querySelectorAll("#navToggle, .btn-primary, .btn-ghost");
   excitementTriggers.forEach(function (el) {

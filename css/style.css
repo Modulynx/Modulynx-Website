@@ -164,19 +164,20 @@ body {
 }
 
 /* — the living lynx — */
-/* the "claws touch the eyebrow" downward nudge that used to live here (via
-   top / translateY, plus a bigger [dir="rtl"] override) kept causing
-   problems — it broke the claw-mark's fixed positioning once, then made
-   the body visibly sag away from the head once the lynx got shrunk on
-   short viewports. Reverted to its natural, unshifted position. */
+/* only the HEAD + FRONT PAWS (.lynx-stage) ever move for the "claws touch
+   the eyebrow" nudge (see the [dir="rtl"] rule further down) — the body,
+   hind feet, and tail (.lynx-body-stage, below) are intentionally NEVER
+   touched by that, on any breakpoint or language. A JS-driven approach
+   that made the body follow the head's live position was tried and
+   reverted — the two are meant to be independent: the front paws come
+   down to sit level with the already-fixed hind feet, not the other way
+   around. */
 .lynx-stage { position: relative; width: clamp(170px, 22vw, 230px); z-index: 3; }
 
-/* the body sits behind the hero copy. top:90px used to match .hero-inner's
-   own padding-top exactly, keeping the torso lined up under the head/paws
-   — raised further (60px) on its own so more of the body tucks up behind
-   the head/neck, while .lynx-stage (head + paws) stays exactly where it
-   was. Only this stage moves; the shoulder-lines/tail still track the
-   real paw positions live every frame, so nothing disconnects. */
+/* the body sits behind the hero copy at one single fixed position — no
+   [dir="rtl"] variant, no per-breakpoint override, nothing that has to
+   numerically agree with any other rule. Deliberately the simplest
+   possible positioning so there's nothing left to drift out of sync. */
 .lynx-body-stage {
   position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
   width: clamp(170px, 22vw, 230px); z-index: 1;
@@ -869,26 +870,20 @@ html[dir="rtl"] .section-title {
 html[dir="rtl"] .hero-eyebrow {
   font-size: clamp(28px, 3.8vw, 38px); word-spacing: .25em; margin: 6px 0 0;
 }
-/* Arabic only: nudge the lynx down further so its claws land on the eyebrow
-   line. Uses `top` on .lynx-stage (not `transform`) — #pawSwipeVideo
-   (position: fixed) lives inside it, and a `transform` on an ancestor makes
+/* Arabic only: nudge the head/paws down further so its claws land on the
+   eyebrow line. Uses `top` (not `transform`) — #pawSwipeVideo (position:
+   fixed) lives inside .lynx-stage, and a `transform` on an ancestor makes
    that ancestor the containing block for fixed descendants instead of the
    viewport, which broke the claw-mark's screen position the last time this
-   was tried with `transform`. .lynx-body-stage has no fixed descendants,
-   so `transform: translateY()` there (layered on top of its own `top`) is
-   fine. English's eyebrow is small/tracked and sits close to the lynx
-   already, so it doesn't get this nudge. */
+   was tried with `transform`. .lynx-body-stage no longer needs its own
+   matching override at all — lynx.js measures .lynx-stage's real position
+   (whatever it resolves to here) and positions the body from that
+   directly every frame, so there's nothing left to keep in sync by hand.
+   English's eyebrow is small/tracked and sits close to the lynx already,
+   so it doesn't get this nudge. */
 html[dir="rtl"] .lynx-stage { top: 36px; }
-html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%) translateY(36px); }
-/* on short viewports the lynx also shrinks (see the max-height media query
-   above — this now includes narrow/mobile too, not just wide screens) — a
-   fixed 36px offset became proportionally much bigger on the smaller lynx
-   last time, sagging the body away from the head. Reset it there instead
-   of scaling it down. Must come after the rules above (equal specificity —
-   source order decides) to actually win. */
 @media (max-height: 860px) {
   html[dir="rtl"] .lynx-stage { top: 0; }
-  html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%); }
 }
 /* tighten the gap down to the headline too — the shared .hero-title
    margin-top was tuned for the Latin version's smaller eyebrow */
