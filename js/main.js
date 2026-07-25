@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
    MODULYNX — page interactions
-   Custom cursor, scroll reveals, counters, magnetic buttons,
-   3D card tilt, navbar behavior, mobile menu, contact form.
+   Scroll reveals, counters, magnetic buttons, 3D card tilt,
+   navbar behavior, mobile menu, contact form.
    ═══════════════════════════════════════════════════════════ */
 (function () {
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -19,29 +19,6 @@
     if (preloader) preloader.classList.add("done");
     document.body.classList.add("loaded");
   }, 4000);
-
-  /* ── custom cursor (lerped ring) ── */
-  var dot = document.getElementById("cursorDot");
-  var ring = document.getElementById("cursorRing");
-  if (dot && ring && matchMedia("(pointer: fine)").matches && !reduced) {
-    var mx = -100, my = -100, rx = -100, ry = -100;
-    window.addEventListener("mousemove", function (e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + "px";
-      dot.style.top = my + "px";
-    });
-    (function cursorFrame() {
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
-      ring.style.left = rx + "px";
-      ring.style.top = ry + "px";
-      requestAnimationFrame(cursorFrame);
-    })();
-    document.querySelectorAll("a, button, .card, input, textarea").forEach(function (el) {
-      el.addEventListener("mouseenter", function () { ring.classList.add("hovering"); });
-      el.addEventListener("mouseleave", function () { ring.classList.remove("hovering"); });
-    });
-  }
 
   /* ── navbar: shrink on scroll, hide on scroll-down ── */
   var nav = document.getElementById("nav");

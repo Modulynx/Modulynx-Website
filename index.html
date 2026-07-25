@@ -39,10 +39,6 @@
   <div class="grain" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
-  <!-- ══════════ Custom cursor ══════════ -->
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
   <!-- ══════════ Navigation ══════════ -->
   <nav class="nav" id="nav">
     <a class="nav-brand" href="#top" data-i18n-aria-label="nav.brandAria" aria-label="Modulynx home">
@@ -184,8 +180,8 @@
                    a soft arch by default — a sharp break partway along each
                    brow, sloping down toward the nose, reads as a fiercer,
                    more predatory resting expression. -->
-              <path class="brow-l" d="M67 93.5 L90 91.5 L105 102.5" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
-              <path class="brow-r" d="M173 93.5 L150 91.5 L135 102.5" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="brow-l" d="M67 95 L90 93 L105 104" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="brow-r" d="M173 95 L150 93 L135 104" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
 
               <!-- ══ eyes — sharp asymmetric almond, small contained pupil ══ -->
               <g class="eye-group" filter="url(#eyeGlow)">
@@ -276,28 +272,6 @@
             </linearGradient>
           </defs>
 
-          <!-- tail drawn FIRST (painted underneath) so the body shape below
-               covers its root and lower reach — it truly emerges from behind
-               the body rather than floating in front of it. Jointed into
-               three segments so it ripples instead of swinging as one rigid
-               rod. Sways continuously, more so the closer the cursor gets. -->
-          <!-- tail is one continuous path (no joints — nothing to seam).
-               Its shape is flexed live by lynx.js (control points ripple
-               with a per-point phase/amplitude), which is what makes a
-               single unbroken curve look genuinely dynamic instead of a
-               rigid rod swinging from the root. -->
-          <!-- a real lynx's tail is short and thick, not long and curling —
-               reshaped to match: much shorter reach, much wider stroke -->
-          <!-- tail: no wisps anymore — a plain, thick, single-piece tail
-               emerging from behind the body's RIGHT side. Realistic shape:
-               hangs down from the root, then curls back UP AND OUTWARD
-               (away from the body, to the right) at the tip — not curling
-               back in toward the body's own center. -->
-          <!-- pushed outward past the body's own right edge, raised up from
-               the root, and rebuilt as ONE continuously smooth curve — the
-               tangent direction matches exactly across both internal joints
-               (no reversal), so it reads as a single upward curl with no
-               visible corners/angles, only a gentle hook right at the tip -->
           <g class="lynx-tail">
             <path id="tailEdge" fill="none" stroke="url(#edgeGradBody)" stroke-width="22" stroke-linecap="round" d="
               M204 155 C 210 153, 216 150, 221 146
@@ -310,9 +284,11 @@
           </g>
 
           <!-- feet, painted here (behind the body) so the body's layer covers
-               them — same position/scale as before, only the z-order moved -->
-          <g transform="translate(65,230) scale(.6)"><use href="#pawFull"/></g>
-          <g transform="translate(125,230) scale(.6)"><use href="#pawFull"/></g>
+               them — lowered a little from y=210 so more of each foot shows
+               past the body's own bottom edge instead of mostly hiding
+               under it. -->
+          <g transform="translate(65,225) scale(.6)"><use href="#pawFull"/></g>
+          <g transform="translate(125,225) scale(.6)"><use href="#pawFull"/></g>
 
           <!-- body: painted AFTER the tail and feet so it covers both. The
                top is pulled down at the center into a notch, so each side
@@ -332,9 +308,15 @@
               C 213 137, 214 129, 212 118
               C 209 105, 196 99, 179 103
               C 155 109, 134 124, 120 140 Z"/>
-            <!-- facet lines echoing the head's angular style -->
+            <!-- facet lines echoing the head's angular style. The vertical
+                 center line used to run from the top of the body down to
+                 y=265, staying hidden behind the head — now that the body
+                 stage sits higher, it poked out ~17px below the chin and,
+                 since it's inside the swaying .lynx-body-sway group, read
+                 as a stray thread dangling and swinging under the head.
+                 Removed rather than re-tuned, since it was purely
+                 decorative and this position dependency is fragile. -->
             <g stroke="#2a3547" stroke-width="1.1" fill="none" opacity=".85">
-              <path d="M120 140 L120 265"/>
               <path d="M23 175 L62 195 M217 175 L179 195"/>
             </g>
           </g>

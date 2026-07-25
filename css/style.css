@@ -26,13 +26,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none;
   transition: opacity .18s ease;
-}
-a, button { cursor: none; }
-@media (hover: none), (pointer: coarse) {
-  body, a, button { cursor: auto; }
-  .cursor-dot, .cursor-ring { display: none; }
 }
 ::selection { background: rgba(242, 168, 59, .35); color: #fff; }
 
@@ -89,26 +83,6 @@ a, button { cursor: none; }
   background: radial-gradient(ellipse at center, transparent 55%, rgba(2, 3, 6, .55) 100%);
 }
 
-/* ══════════ Custom cursor ══════════ */
-.cursor-dot {
-  position: fixed; z-index: 150; pointer-events: none;
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--amber-hi);
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 12px rgba(242, 168, 59, .8);
-}
-.cursor-ring {
-  position: fixed; z-index: 149; pointer-events: none;
-  width: 34px; height: 34px; border-radius: 50%;
-  border: 1.5px solid rgba(242, 168, 59, .5);
-  transform: translate(-50%, -50%);
-  transition: width .3s var(--ease-out), height .3s var(--ease-out), border-color .3s;
-}
-.cursor-ring.hovering {
-  width: 56px; height: 56px;
-  border-color: rgba(143, 199, 221, .8);
-}
-
 /* ══════════ Navigation ══════════ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -153,7 +127,7 @@ a, button { cursor: none; }
 .nav-cta:hover { color: var(--bg0); background: var(--amber-hi); }
 .nav-toggle { display: none; }
 .lang-toggle {
-  color: var(--ice); background: transparent; cursor: none;
+  color: var(--ice); background: transparent;
   font-family: var(--font-body); font-size: 13px; font-weight: 600;
   padding: 7px 16px; border-radius: 999px;
   border: 1px solid rgba(143, 199, 221, .35);
@@ -190,17 +164,21 @@ a, button { cursor: none; }
 }
 
 /* — the living lynx — */
-/* nudged down a little so its claws just touch the eyebrow line beneath it
-   (English's eyebrow sits close already — Arabic's needs a bigger nudge,
-   see the [dir="rtl"] override below). Both stages always move together
-   (see .lynx-body-stage) or the paw/body alignment breaks. */
-.lynx-stage { position: relative; top: 18px; width: clamp(170px, 22vw, 230px); z-index: 3; }
+/* the "claws touch the eyebrow" downward nudge that used to live here (via
+   top / translateY, plus a bigger [dir="rtl"] override) kept causing
+   problems — it broke the claw-mark's fixed positioning once, then made
+   the body visibly sag away from the head once the lynx got shrunk on
+   short viewports. Reverted to its natural, unshifted position. */
+.lynx-stage { position: relative; width: clamp(170px, 22vw, 230px); z-index: 3; }
 
-/* the body sits behind the hero copy — top:90px matches .hero-inner's own
-   padding-top, and it shares the same 240-unit width scale as .lynx-stage,
-   so its torso lines up under the head/paws without any JS measuring. */
+/* the body sits behind the hero copy. top:90px used to match .hero-inner's
+   own padding-top exactly, keeping the torso lined up under the head/paws
+   — raised further (60px) on its own so more of the body tucks up behind
+   the head/neck, while .lynx-stage (head + paws) stays exactly where it
+   was. Only this stage moves; the shoulder-lines/tail still track the
+   real paw positions live every frame, so nothing disconnects. */
 .lynx-body-stage {
-  position: absolute; top: 90px; left: 50%; transform: translateX(-50%) translateY(18px);
+  position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
   width: clamp(170px, 22vw, 230px); z-index: 1;
   pointer-events: none; opacity: .85;
 }
@@ -237,7 +215,7 @@ a, button { cursor: none; }
 .fangs { opacity: 0; transform-origin: 120px 177px; transition: opacity .25s ease, transform .25s ease; }
 /* .is-yawning is toggled by lynx.js every 30s for an unprompted "yawn" —
    the fangs/mouth show on their own, not just on approach or excitement */
-.lynx-stage:hover .fangs, .lynx-stage.is-excited .fangs, .lynx-stage.is-yawning .fangs { opacity: 1; transform: scaleY(1.1); }
+.lynx-stage:hover .fangs, .lynx-stage.is-touch-hover .fangs, .lynx-stage.is-excited .fangs, .lynx-stage.is-yawning .fangs { opacity: 1; transform: scaleY(1.1); }
 /* the mouth stays closed (cavity invisible) until the fangs show — same triggers */
 .mouth-cavity { opacity: 0; transition: opacity .25s ease; }
 /* direct approach (hovering the lynx itself) no longer opens the mouth at
@@ -263,8 +241,8 @@ a, button { cursor: none; }
 .brow-l, .brow-r { transition: transform .35s var(--ease-spring); }
 .brow-l { transform-origin: 68px 97px; }
 .brow-r { transform-origin: 172px 97px; }
-.lynx-stage:hover .brow-l { transform: translateY(2px) rotate(6deg); }
-.lynx-stage:hover .brow-r { transform: translateY(2px) rotate(-6deg); }
+.lynx-stage:hover .brow-l, .lynx-stage.is-touch-hover .brow-l { transform: translateY(2px) rotate(6deg); }
+.lynx-stage:hover .brow-r, .lynx-stage.is-touch-hover .brow-r { transform: translateY(2px) rotate(-6deg); }
 .lynx-stage.is-angry .brow-l { transform: translateY(4px) rotate(12deg); }
 .lynx-stage.is-angry .brow-r { transform: translateY(4px) rotate(-12deg); }
 .lynx-stage.is-excited .brow-l { transform: translateY(-2px) rotate(-3deg); }
@@ -281,7 +259,7 @@ a, button { cursor: none; }
   50% { opacity: calc(.8 + var(--claw-reveal, 0) * .2); transform: translateY(calc(3px + var(--claw-reveal, 0) * 3px)); }
 }
 .claws { animation: clawPulse 2.6s ease-in-out infinite; }
-.lynx-stage:hover .claws, .lynx-stage.is-excited .claws {
+.lynx-stage:hover .claws, .lynx-stage.is-touch-hover .claws, .lynx-stage.is-excited .claws {
   animation: none; opacity: 1; transform: translateY(6px);
 }
 /* paws never quite sit still — continuous idle sway, growing with proximity —
@@ -300,7 +278,7 @@ a, button { cursor: none; }
 }
 #pawL { animation: pawSwayL 3.6s ease-in-out infinite; }
 #pawR { animation: pawSwayR 3.6s ease-in-out infinite .2s; }
-.lynx-stage:hover #pawL { animation: none; transform: rotate(-15deg) translate(-5px, -8px) scale(1.05); }
+.lynx-stage:hover #pawL, .lynx-stage.is-touch-hover #pawL { animation: none; transform: rotate(-15deg) translate(-5px, -8px) scale(1.05); }
 /* the right paw does a real raise-then-swipe-down gesture on approach — the
    claw-mark clip (see lynx.js) is started with a matching delay so the
    marks only appear once THIS swipe actually lands, instead of a second
@@ -314,7 +292,7 @@ a, button { cursor: none; }
   70% { transform: rotate(18deg) translate(10px, 6px) scale(1.1); }
   100% { transform: rotate(15deg) translate(5px, -8px) scale(1.05); }
 }
-.lynx-stage:hover #pawR { animation: pawSwipeR .65s ease-out forwards; }
+.lynx-stage:hover #pawR, .lynx-stage.is-touch-hover #pawR { animation: pawSwipeR .65s ease-out forwards; }
 
 /* hovering the nav toggle ("the two dashes"): no big wave — just a settled,
    planted "ready" stance (idle sway stops, paws brace slightly down/in) so
@@ -327,12 +305,12 @@ a, button { cursor: none; }
    forward toward the button (claws bared via .is-excited, see lynx.js).
    Growth is slow and gradual (1.4s), not a snap, so it keeps building for
    as long as the button stays hovered. */
-.hero-inner:has(.btn-primary:hover) #pawL { animation: none; transition: transform 2.9s ease-out; transform: rotate(-24deg) translate(-8px, -12px) scale(1.38); }
-.hero-inner:has(.btn-primary:hover) #pawR { animation: none; transition: transform 2.9s ease-out; transform: rotate(24deg) translate(8px, -12px) scale(1.38); }
+.hero-inner:has(.btn-primary:hover) #pawL, .hero-inner:has(.btn-primary.is-touch-hover) #pawL { animation: none; transition: transform 2.9s ease-out; transform: rotate(-24deg) translate(-8px, -12px) scale(1.38); }
+.hero-inner:has(.btn-primary:hover) #pawR, .hero-inner:has(.btn-primary.is-touch-hover) #pawR { animation: none; transition: transform 2.9s ease-out; transform: rotate(24deg) translate(8px, -12px) scale(1.38); }
 
 /* hovering "See how we work": a curious one-paw-raised tilt, also bigger, same slow growth */
-.hero-inner:has(.btn-ghost:hover) #pawL { animation: none; transition: transform 2.9s ease-out; transform: rotate(-32deg) translateY(-16px) scale(1.32); }
-.hero-inner:has(.btn-ghost:hover) #pawR { animation: none; transition: transform 2.9s ease-out; transform: rotate(6deg) translateY(-2px) scale(1.32); }
+.hero-inner:has(.btn-ghost:hover) #pawL, .hero-inner:has(.btn-ghost.is-touch-hover) #pawL { animation: none; transition: transform 2.9s ease-out; transform: rotate(-32deg) translateY(-16px) scale(1.32); }
+.hero-inner:has(.btn-ghost:hover) #pawR, .hero-inner:has(.btn-ghost.is-touch-hover) #pawR { animation: none; transition: transform 2.9s ease-out; transform: rotate(6deg) translateY(-2px) scale(1.32); }
 
 /* shoulder-line endpoints are no longer CSS-animated at all — lynx.js
    redraws their bottom point every frame to exactly match the paw's live
@@ -405,6 +383,24 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
 .hero-sub { color: var(--muted); max-width: 560px; font-size: clamp(15px, 1.6vw, 18px); }
 .hero-actions { display: flex; gap: 16px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
 
+/* on shorter viewports (common on laptop screens, especially once the
+   Arabic eyebrow/lynx sizing grew this session) the hero content could run
+   taller than the visible viewport, pushing the CTA buttons below the fold
+   until the visitor scrolled. Height-based (not width-based), so it never
+   touches the separate @media(max-width:960px) mobile layout below — this
+   only kicks in when vertical space is actually tight, on any device. */
+@media (max-height: 860px) {
+  .hero-inner { padding: 56px 24px 30px; gap: 8px; }
+  .hero-actions { margin-top: 20px; }
+}
+@media (max-height: 860px) and (min-width: 961px) {
+  .lynx-stage, .lynx-body-stage { width: clamp(140px, 16vw, 190px); }
+}
+@media (max-height: 860px) {
+  html[dir="rtl"] .hero-eyebrow { font-size: clamp(20px, 2.8vw, 26px); margin: 4px 0 0; }
+  html[dir="rtl"] .hero-title { margin-top: 0; }
+}
+
 /* — buttons — */
 .btn {
   display: inline-block; text-decoration: none; font-weight: 600;
@@ -412,7 +408,36 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
   padding: 14px 32px; border-radius: 999px; border: none;
   transition: transform .35s var(--ease-spring), box-shadow .35s, background .3s, color .3s;
   will-change: transform;
+  position: relative; overflow: hidden;
 }
+/* touch feedback: a fill sweeps across the button for as long as it's held
+   — reusing .is-touch-hover, the same class lynx.js already holds on
+   touchstart for the paw-grow reaction (see the excitementTriggers touch
+   handling), so the two stay in sync automatically. Releasing early just
+   reverses the fill — tapping still activates the link exactly as normal
+   either way, this is purely a visual cue so touch visitors get to see the
+   reaction happening instead of an instant snap. */
+.btn::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(255, 255, 255, .22);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1.4s linear;
+  pointer-events: none;
+}
+.btn.is-touch-hover::after { transform: scaleX(1); }
+/* once the fill finishes (lynx.js adds .is-charged at the same 1.4s mark),
+   it blinks between the lynx's own amber/ice edge colors instead of
+   sitting static — a clear "fully held, ready" signal before release. */
+@keyframes chargedGlow {
+  0%, 100% { box-shadow: 0 0 24px rgba(242, 168, 59, .55); }
+  50% { box-shadow: 0 0 24px rgba(143, 199, 221, .55); }
+}
+@keyframes chargedFill {
+  0%, 100% { background: rgba(242, 168, 59, .38); }
+  50% { background: rgba(143, 199, 221, .38); }
+}
+.btn.is-charged { animation: chargedGlow .45s ease-in-out infinite; }
+.btn.is-charged::after { transform: scaleX(1); animation: chargedFill .45s ease-in-out infinite; }
 .btn-primary {
   background: linear-gradient(120deg, var(--amber), #e08f1f);
   color: #14100a;
@@ -813,12 +838,26 @@ html[dir="rtl"] .section-title {
 html[dir="rtl"] .hero-eyebrow {
   font-size: clamp(28px, 3.8vw, 38px); word-spacing: .25em; margin: 6px 0 0;
 }
-/* the lynx sits lower only in Arabic — its bigger eyebrow text needed the
-   extra room. The English eyebrow is small/tracked and doesn't, so pushing
-   the lynx down there just made it cover "MODULAR DIGITAL STUDIO" instead.
-   Both stages still move together (see .lynx-stage / .lynx-body-stage). */
+/* Arabic only: nudge the lynx down further so its claws land on the eyebrow
+   line. Uses `top` on .lynx-stage (not `transform`) — #pawSwipeVideo
+   (position: fixed) lives inside it, and a `transform` on an ancestor makes
+   that ancestor the containing block for fixed descendants instead of the
+   viewport, which broke the claw-mark's screen position the last time this
+   was tried with `transform`. .lynx-body-stage has no fixed descendants,
+   so `transform: translateY()` there (layered on top of its own `top`) is
+   fine. English's eyebrow is small/tracked and sits close to the lynx
+   already, so it doesn't get this nudge. */
 html[dir="rtl"] .lynx-stage { top: 36px; }
 html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%) translateY(36px); }
+/* on short+wide viewports the lynx also shrinks (see the max-height media
+   query above) — a fixed 36px offset became proportionally much bigger on
+   the smaller lynx last time, sagging the body away from the head. Reset
+   it there instead of scaling it down. Must come after the rules above
+   (equal specificity — source order decides) to actually win. */
+@media (max-height: 860px) and (min-width: 961px) {
+  html[dir="rtl"] .lynx-stage { top: 0; }
+  html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%); }
+}
 /* tighten the gap down to the headline too — the shared .hero-title
    margin-top was tuned for the Latin version's smaller eyebrow */
 html[dir="rtl"] .hero-title { margin-top: 2px; }

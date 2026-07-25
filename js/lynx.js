@@ -25,16 +25,10 @@
   var pawL = document.getElementById("pawL");
   var pawR = document.getElementById("pawR");
   // the tail's own control points, in order along the curve — index 0 is the
-  // fixed root (behind the body's right side), the curve hangs down then
-  // curls back up and OUTWARD (away from the body) toward the tip — every
-  // later point gets more ripple the further out it is. Kept short enough
-  // vertically to clear the real front paw, but pushed further out
-  // horizontally so it visibly exits past the body's own right edge
-  // instead of staying hidden underneath it.
-  // rebuilt as one continuously smooth curve — the tangent direction is
-  // matched exactly across both internal joints (points 3→4 and 6→7 each
-  // continue the same direction as the segment before them), so the base
-  // shape has no corners at all, only a gentle curl at the very tip
+  // fixed root (behind the body's right side). Rebuilt as one continuously
+  // smooth curve — the tangent direction is matched exactly across both
+  // internal joints, so the base shape has no corners, only a gentle curl
+  // at the very tip.
   var tailPts = [
     [204, 155], [210, 153], [216, 150], [221, 146],
     [226, 142], [231, 138], [235, 133],
@@ -134,12 +128,9 @@
         if (i === 0) return p; // root stays anchored to the body
         // amplitude grows with distance from the root on a curve (not
         // linearly), so the base barely moves while the tip whips — and a
-        // wider phase spread along the length gives the wave time to travel
-        // the tail is short now — the old amplitude was tuned for a much
-        // longer reach and made the short segments whip into sharp,
-        // "broken"-looking angles instead of a smooth realistic sway.
-        // Excitement (button hover / approach, via --claw-reveal) now makes
-        // it noticeably livelier — bigger AND quicker swishing, like a real
+        // wider phase spread along the length gives the wave time to travel.
+        // Excitement (button hover / approach, via --claw-reveal) makes it
+        // noticeably livelier — bigger AND quicker swishing, like a real
         // cat's tail picking up energy — not just the faint idle sway.
         var t = i / (tailPts.length - 1);
         var amp = Math.pow(t, 1.7) * 2.5 * (1 + reveal * 2.2);
@@ -189,14 +180,13 @@
   var swipeVideo = document.getElementById("pawSwipeVideo");
   var swipeTimer = null;
   var pupilNarrowTimer = null;
-  function positionSwipeVideo(targetEl, dx, dy) {
-    var r = targetEl.getBoundingClientRect();
+  function positionSwipeVideo(cx, cy, dx, dy) {
     var w = swipeVideo.offsetWidth || 130;
     var h = swipeVideo.offsetHeight || 130;
-    swipeVideo.style.left = (r.left + r.width / 2 - w / 2 + dx) + "px";
-    swipeVideo.style.top = (r.top + r.height / 2 - h / 2 + dy) + "px";
+    swipeVideo.style.left = (cx - w / 2 + dx) + "px";
+    swipeVideo.style.top = (cy - h / 2 + dy) + "px";
   }
-  function triggerSwipeAt(targetEl, dx, dy) {
+  function triggerSwipeAtPoint(cx, cy, dx, dy) {
     if (!swipeVideo || reduced) return;
     clearTimeout(swipeTimer);
     clearTimeout(pupilNarrowTimer);
@@ -206,7 +196,7 @@
       pupilL.setAttribute("rx", "1.2"); pupilR.setAttribute("rx", "1.2");
     }, 150);
     swipeTimer = setTimeout(function () {
-      positionSwipeVideo(targetEl, dx, dy);
+      positionSwipeVideo(cx, cy, dx, dy);
       swipeVideo.classList.add("is-active");
       try {
         swipeVideo.currentTime = 0;
@@ -215,12 +205,29 @@
       dilate(); // back to normal interest once the swipe has landed
     }, 420); // ~70% through pawSwipeR's .65s, right as the paw lands
   }
+  function triggerSwipeAt(targetEl, dx, dy) {
+    var r = targetEl.getBoundingClientRect();
+    triggerSwipeAtPoint(r.left + r.width / 2, r.top + r.height / 2, dx, dy);
+  }
   function cancelSwipe() {
     clearTimeout(swipeTimer);
     clearTimeout(pupilNarrowTimer);
     if (swipeVideo) { swipeVideo.pause(); swipeVideo.classList.remove("is-active"); }
   }
   if (swipeVideo && !reduced) {
+    swipeVideo.addEventListener("ended", function () { swipeVideo.classList.remove("is-active"); });
+    // clicking/tapping ANYWHERE on the page shows the same claw-mark right
+    // at that exact point — a click is a much more deliberate, direct
+    // "interaction" than a hover, so it gets the same reaction the lynx
+    // gives its own paw or a button. EXCEPT on actual interactive controls
+    // (buttons, links, the nav-toggle whether it's showing the hamburger or
+    // the X, form fields) — those already have their own dedicated
+    // reactions (or none, for the nav-toggle's X), and getting a second,
+    // generic mark on top of a real click reads as noise, not a reaction.
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("a, button, input, textarea, select, .nav-toggle")) return;
+      triggerSwipeAtPoint(e.clientX, e.clientY, 0, 0);
+    });
     stage.addEventListener("mouseenter", function () { triggerSwipeAt(pawR, -12, 15); });
     stage.addEventListener("mouseleave", cancelSwipe);
   }
@@ -297,6 +304,32 @@
     stage.classList.remove("is-angry");
   });
 
+  // ── touch: none of the reactions above exist without a real :hover, and a
+  //    tap ends almost immediately (there's no "still touching" signal the
+  //    way there's a "still hovering" one) — so tapping the lynx plays the
+  //    same reaction (dilate, brows/fangs via .is-touch-hover, the paw
+  //    swipe) for a fixed, visible duration, then reverts on its own. ──
+  if (!reduced) {
+    var TOUCH_HOLD = 1400;
+    var stageTouchTimer = null;
+    stage.addEventListener("touchstart", function () {
+      clearTimeout(stageTouchTimer);
+      clearTimeout(angryTimer);
+      stage.classList.add("is-touch-hover");
+      dilate();
+      document.documentElement.style.setProperty("--claw-reveal", "1");
+      triggerSwipeAt(pawR, -12, 15);
+      angryTimer = setTimeout(function () { stage.classList.add("is-angry"); }, 2200);
+      stageTouchTimer = setTimeout(function () {
+        stage.classList.remove("is-touch-hover", "is-angry");
+        clearTimeout(angryTimer);
+        undilate();
+        document.documentElement.style.setProperty("--claw-reveal", "0");
+        cancelSwipe();
+      }, TOUCH_HOLD);
+    }, { passive: true });
+  }
+
   // ── hovering the nav toggle or a hero CTA mirrors the exact excitement of
   //    approaching the lynx directly: fangs, claws, dilated pupils, AND the
   //    same body/tail motion intensity as being right next to it (forcing
@@ -309,14 +342,14 @@
     // leaning forward, per the brief. The two CTA buttons get the full
     // scratch: the marks land ON the button, not back at the lynx.
     var doesSwipe = el.id !== "navToggle";
-    el.addEventListener("mouseenter", function () {
+    function enter() {
       clearTimeout(returnTimer);
       if (bodyStage) bodyStage.classList.remove("is-returning");
       stage.classList.add("is-excited"); dilateMore();
       document.documentElement.style.setProperty("--claw-reveal", "1");
       if (doesSwipe) triggerSwipeAt(el, 0, 0);
-    });
-    el.addEventListener("mouseleave", function () {
+    }
+    function leave() {
       stage.classList.remove("is-excited"); undilate();
       document.documentElement.style.setProperty("--claw-reveal", "0");
       if (doesSwipe) cancelSwipe();
@@ -327,7 +360,48 @@
         clearTimeout(returnTimer);
         returnTimer = setTimeout(function () { bodyStage.classList.remove("is-returning"); }, 2900);
       }
-    });
+    }
+    el.addEventListener("mouseenter", enter);
+    el.addEventListener("mouseleave", leave);
+    // touch: holding plays the exact same reaction as hovering (enter()),
+    // and the button's own fill sweeps across it (.is-touch-hover, see
+    // .btn::after in style.css). Once the fill finishes (1.4s), it switches
+    // to .is-charged — a blinking amber/ice glow, the lynx's own edge
+    // colors — signaling it's "ready".
+    if (!reduced) {
+      var chargeTimer = null;
+      el.addEventListener("touchstart", function () {
+        clearTimeout(chargeTimer);
+        el.classList.remove("is-charged");
+        el.classList.add("is-touch-hover");
+        enter();
+        chargeTimer = setTimeout(function () {
+          el.classList.add("is-charged");
+        }, 1400);
+      }, { passive: true });
+      // Releasing clears the visual state either way. It also has to
+      // MANUALLY send the visitor on — past ~500ms-1s of holding still
+      // without moving, several mobile browsers stop treating it as a
+      // "tap" and never fire their own synthetic click on release, so
+      // waiting on that would silently strand touch visitors once the fill
+      // had time to run. preventDefault() here stops the browser from
+      // trying (and, for a short hold, maybe double-firing) its own click,
+      // and el.click() takes over unconditionally instead.
+      el.addEventListener("touchend", function (e) {
+        clearTimeout(chargeTimer);
+        el.classList.remove("is-touch-hover", "is-charged");
+        leave();
+        e.preventDefault();
+        el.click();
+      }, { passive: false });
+      // touchcancel means the gesture was aborted (e.g. the page scrolled
+      // under the finger) — clean up, but don't treat that as a tap.
+      el.addEventListener("touchcancel", function () {
+        clearTimeout(chargeTimer);
+        el.classList.remove("is-touch-hover", "is-charged");
+        leave();
+      }, { passive: true });
+    }
   });
 
   // ── claws bare further, and the body/tail sway more, the closer the cursor
