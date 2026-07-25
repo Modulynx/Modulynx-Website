@@ -185,12 +185,39 @@ a, button { cursor: none; }
 .hero-inner {
   position: relative; z-index: 2;
   display: flex; flex-direction: column; align-items: center;
-  gap: 12px; padding: 110px 24px 60px;
+  gap: 14px; padding: 90px 24px 50px;
   text-align: center; max-width: 900px;
 }
 
 /* — the living lynx — */
-.lynx-stage { position: relative; width: clamp(200px, 32vw, 300px); }
+/* nudged down a little so its claws just touch the eyebrow line beneath it
+   (English's eyebrow sits close already — Arabic's needs a bigger nudge,
+   see the [dir="rtl"] override below). Both stages always move together
+   (see .lynx-body-stage) or the paw/body alignment breaks. */
+.lynx-stage { position: relative; top: 18px; width: clamp(170px, 22vw, 230px); z-index: 3; }
+
+/* the body sits behind the hero copy — top:90px matches .hero-inner's own
+   padding-top, and it shares the same 240-unit width scale as .lynx-stage,
+   so its torso lines up under the head/paws without any JS measuring. */
+.lynx-body-stage {
+  position: absolute; top: 90px; left: 50%; transform: translateX(-50%) translateY(18px);
+  width: clamp(170px, 22vw, 230px); z-index: 1;
+  pointer-events: none; opacity: .85;
+}
+.lynx-body-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.hero-copy { position: relative; z-index: 2; }
+/* claw-swipe clip: sits over the right paw, invisible/paused until the lynx
+   is approached — lynx.js plays it from frame 0 on every mouseenter */
+/* positioned via lynx.js (left/top set in JS) so the same clip can appear
+   either at the paw (approaching the lynx) or at whichever button is
+   hovered — "the scratch shows up where the interaction is happening" */
+.paw-swipe-video {
+  position: fixed; width: 130px; height: auto;
+  transform: rotate(60deg); transform-origin: center;
+  z-index: 999; pointer-events: none;
+  opacity: 0; transition: opacity .15s ease;
+}
+.paw-swipe-video.is-active { opacity: 1; }
 .lynx-aura {
   position: absolute; inset: -18%;
   background: radial-gradient(circle, rgba(242, 168, 59, .16) 0%, transparent 62%);
@@ -199,11 +226,147 @@ a, button { cursor: none; }
 }
 @keyframes auraPulse { 0%, 100% { opacity: .6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
 .lynx-svg { width: 100%; height: auto; display: block; overflow: visible; }
-.lynx-breathe { transform-origin: 120px 130px; animation: breathe 4.6s ease-in-out infinite; }
+.lynx-breathe { transform-origin: 120px 190px; animation: breathe 4.6s ease-in-out infinite; }
 .lynx-head { transform-origin: 120px 130px; }
 @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.018); } }
-.tuft { transform-origin: 60px 30px; }
-.tuft:last-of-type { transform-origin: 180px 30px; }
+.tuft { transform-origin: 57px 26px; }
+.tuft:last-of-type { transform-origin: 183px 26px; }
+/* fangs stay hidden until the visitor hovers the lynx — "the mouth opens".
+   .is-excited is toggled by lynx.js when a CTA/nav-toggle is hovered, so
+   buttons trigger the exact same "excited" reaction as approaching the lynx. */
+.fangs { opacity: 0; transform-origin: 120px 177px; transition: opacity .25s ease, transform .25s ease; }
+/* .is-yawning is toggled by lynx.js every 30s for an unprompted "yawn" —
+   the fangs/mouth show on their own, not just on approach or excitement */
+.lynx-stage:hover .fangs, .lynx-stage.is-excited .fangs, .lynx-stage.is-yawning .fangs { opacity: 1; transform: scaleY(1.1); }
+/* the mouth stays closed (cavity invisible) until the fangs show — same triggers */
+.mouth-cavity { opacity: 0; transition: opacity .25s ease; }
+/* direct approach (hovering the lynx itself) no longer opens the mouth at
+   all — it stays shut and only the fangs show, reading as a closed-mouth
+   snarl rather than a gape. Buttons (.is-excited) and the idle yawn still
+   open it. */
+.lynx-stage.is-excited .mouth-cavity, .lynx-stage.is-yawning .mouth-cavity { opacity: 1; }
+/* the mouth itself opens slightly (not just the fangs fading in) on the same
+   triggers: approaching the lynx, it growing to full size, or the idle yawn.
+   Staying close longer (.is-angry, set by lynx.js) opens it further still. */
+.mouth-group { transform-origin: 120px 162px; transition: transform .25s ease; }
+.lynx-stage.is-yawning .mouth-group { transform: scaleY(1.22) translateY(1px); }
+/* buttons (.is-excited) open the mouth a lot less than the idle yawn — a
+   smaller, subtler opening reads as alert/ready rather than a wide gape */
+.lynx-stage.is-excited .mouth-group { transform: scaleY(1.1) translateY(.5px); }
+/* direct approach (:hover, including the later .is-angry stage) keeps the
+   mouth fully closed — no scale/opening at all — so the anger reads purely
+   from the bared fangs (see .fangs below), never an open mouth. */
+
+/* brows: angry/furrowed the moment you approach (hissing), and furrow even
+   further if you stay close (.is-angry, set by lynx.js after ~2s). Buttons
+   get their own "excited" (both raised, alert) look instead. */
+.brow-l, .brow-r { transition: transform .35s var(--ease-spring); }
+.brow-l { transform-origin: 68px 97px; }
+.brow-r { transform-origin: 172px 97px; }
+.lynx-stage:hover .brow-l { transform: translateY(2px) rotate(6deg); }
+.lynx-stage:hover .brow-r { transform: translateY(2px) rotate(-6deg); }
+.lynx-stage.is-angry .brow-l { transform: translateY(4px) rotate(12deg); }
+.lynx-stage.is-angry .brow-r { transform: translateY(4px) rotate(-12deg); }
+.lynx-stage.is-excited .brow-l { transform: translateY(-2px) rotate(-3deg); }
+.lynx-stage.is-excited .brow-r { transform: translateY(-2px) rotate(3deg); }
+/* unprompted every-20s puzzlement, alternating which brow lifts — see lynx.js */
+.lynx-stage.is-quizzical-a .brow-l { transform: translateY(-5px) rotate(-9deg); }
+.lynx-stage.is-quizzical-a .brow-r { transform: translateY(4px) rotate(6deg); }
+.lynx-stage.is-quizzical-b .brow-l { transform: translateY(4px) rotate(-6deg); }
+.lynx-stage.is-quizzical-b .brow-r { transform: translateY(-5px) rotate(9deg); }
+/* claws: continuously bare and retract on their own — not just on approach —
+   getting further and faster the closer the cursor gets (--claw-reveal) */
+@keyframes clawPulse {
+  0%, 100% { opacity: calc(.45 + var(--claw-reveal, 0) * .35); transform: translateY(calc(var(--claw-reveal, 0) * 4px)); }
+  50% { opacity: calc(.8 + var(--claw-reveal, 0) * .2); transform: translateY(calc(3px + var(--claw-reveal, 0) * 3px)); }
+}
+.claws { animation: clawPulse 2.6s ease-in-out infinite; }
+.lynx-stage:hover .claws, .lynx-stage.is-excited .claws {
+  animation: none; opacity: 1; transform: translateY(6px);
+}
+/* paws never quite sit still — continuous idle sway, growing with proximity —
+   and pause for the dramatic hover/gesture transforms below to take over */
+@keyframes pawSwayL {
+  0%, 100% { transform: rotate(calc(var(--claw-reveal, 0) * -6deg)) translateY(calc(var(--claw-reveal, 0) * -3px)); }
+  50% { transform: rotate(calc(-6deg - var(--claw-reveal, 0) * 9deg)) translateY(calc(-4px - var(--claw-reveal, 0) * 5px)); }
+}
+@keyframes pawSwayR {
+  0%, 100% { transform: rotate(calc(var(--claw-reveal, 0) * 6deg)) translateY(calc(var(--claw-reveal, 0) * -3px)); }
+  50% { transform: rotate(calc(6deg + var(--claw-reveal, 0) * 9deg)) translateY(calc(-4px - var(--claw-reveal, 0) * 5px)); }
+}
+#pawL, #pawR {
+  transform-box: fill-box; transform-origin: center;
+  transition: transform .35s var(--ease-spring);
+}
+#pawL { animation: pawSwayL 3.6s ease-in-out infinite; }
+#pawR { animation: pawSwayR 3.6s ease-in-out infinite .2s; }
+.lynx-stage:hover #pawL { animation: none; transform: rotate(-15deg) translate(-5px, -8px) scale(1.05); }
+/* the right paw does a real raise-then-swipe-down gesture on approach — the
+   claw-mark clip (see lynx.js) is started with a matching delay so the
+   marks only appear once THIS swipe actually lands, instead of a second
+   paw seeming to appear out of nowhere. Less rotation than before (the
+   circular swing read as too much spin) — now mostly a straight-line
+   path: up and outward to the right (away from the body), then down
+   through the scratch, then back to rest. */
+@keyframes pawSwipeR {
+  0% { transform: rotate(15deg) translate(5px, -8px) scale(1.05); }
+  35% { transform: rotate(-18deg) translate(28px, -66px) scale(1.14); }
+  70% { transform: rotate(18deg) translate(10px, 6px) scale(1.1); }
+  100% { transform: rotate(15deg) translate(5px, -8px) scale(1.05); }
+}
+.lynx-stage:hover #pawR { animation: pawSwipeR .65s ease-out forwards; }
+
+/* hovering the nav toggle ("the two dashes"): no big wave — just a settled,
+   planted "ready" stance (idle sway stops, paws brace slightly down/in) so
+   the lynx reads as alert and prepared rather than doing nothing. The CTA
+   buttons override this further down with their own bigger lunge pose. */
+.lynx-stage.is-excited #pawL { animation: none; transition: transform .3s var(--ease-spring); transform: rotate(-4deg) translate(-2px, 3px) scale(1.04); }
+.lynx-stage.is-excited #pawR { animation: none; transition: transform .3s var(--ease-spring); transform: rotate(4deg) translate(2px, 3px) scale(1.04); }
+
+/* hovering "Start a Project": an eager lean-in, bigger — like it's stepping
+   forward toward the button (claws bared via .is-excited, see lynx.js).
+   Growth is slow and gradual (1.4s), not a snap, so it keeps building for
+   as long as the button stays hovered. */
+.hero-inner:has(.btn-primary:hover) #pawL { animation: none; transition: transform 2.9s ease-out; transform: rotate(-24deg) translate(-8px, -12px) scale(1.38); }
+.hero-inner:has(.btn-primary:hover) #pawR { animation: none; transition: transform 2.9s ease-out; transform: rotate(24deg) translate(8px, -12px) scale(1.38); }
+
+/* hovering "See how we work": a curious one-paw-raised tilt, also bigger, same slow growth */
+.hero-inner:has(.btn-ghost:hover) #pawL { animation: none; transition: transform 2.9s ease-out; transform: rotate(-32deg) translateY(-16px) scale(1.32); }
+.hero-inner:has(.btn-ghost:hover) #pawR { animation: none; transition: transform 2.9s ease-out; transform: rotate(6deg) translateY(-2px) scale(1.32); }
+
+/* shoulder-line endpoints are no longer CSS-animated at all — lynx.js
+   redraws their bottom point every frame to exactly match the paw's live
+   on-screen position (whatever moved it: idle sway, hover, a button
+   gesture), so the two can never visibly separate. */
+
+/* the body and tail sway continuously, and the sway GROWS the closer the
+   cursor gets — driven by the same --claw-reveal proximity value lynx.js
+   already computes (0 at rest, 1 on direct hover). Three jointed tail
+   segments (base/mid/tip) with growing amplitude and a staggered delay so
+   motion ripples from the haunch to the tip, like a real tail. */
+@keyframes bodySway {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(calc(-4deg - var(--claw-reveal, 0) * 8deg)) scale(calc(1 + var(--claw-reveal, 0) * .035)); }
+}
+.lynx-body-sway { animation: bodySway 3.2s ease-in-out infinite; }
+/* any button hover sets .is-excited via lynx.js (nav-toggle included, even
+   though it lives outside .hero-inner) — body pulls in smaller while the
+   head and paws grow: a forced-perspective lunge, stepping toward you */
+.hero-inner:has(.lynx-stage.is-excited) .lynx-body-sway {
+  animation: none; transition: transform 2.9s ease-out;
+  transform: scale(.86) rotate(-4deg);
+}
+/* .is-returning (set by lynx.js right as excitement ends) holds a slow,
+   smooth transition back to neutral before the idle sway resumes — so the
+   body's return is paced like the head's, not an instant snap-back */
+.lynx-body-stage.is-returning .lynx-body-sway {
+  animation: none; transition: transform 2.9s ease-out;
+  transform: none;
+}
+
+/* the tail's own curve is flexed live by lynx.js (per-point ripple, not a
+   rigid rotate) — see the frame loop there — so it stays one seamless path
+   while still moving fluidly, growing stronger with proximity. */
 .eyelid {
   transform-origin: center 113px;
   animation: lynxBlink 6.4s linear infinite;
@@ -222,7 +385,7 @@ a, button { cursor: none; }
 /* — hero copy — */
 .hero-eyebrow {
   font-family: var(--font-display); font-size: 12px; letter-spacing: .5em; text-indent: .5em;
-  color: var(--ice); margin-top: 22px;
+  color: var(--ice); margin: 0 0 6px;
 }
 .hero-title {
   font-family: var(--font-display); font-weight: 700;
@@ -640,6 +803,25 @@ html[dir="rtl"] .hero-title,
 html[dir="rtl"] .section-title {
   letter-spacing: 0;
 }
+/* the Arabic eyebrow ("استوديو رقمي معياري") was reading tiny and sitting
+   closer to the lynx above it than to the headline below. Arabic script
+   can't use the English version's wide letter-spacing (it breaks the
+   connected letterforms), so to occupy a comparable amount of visual
+   space/presence it needs a much bigger font-size instead, plus some
+   word-spacing (safe for Arabic — it only widens the gaps *between* words,
+   unlike letter-spacing which breaks connected letterforms within one). */
+html[dir="rtl"] .hero-eyebrow {
+  font-size: clamp(28px, 3.8vw, 38px); word-spacing: .25em; margin: 6px 0 0;
+}
+/* the lynx sits lower only in Arabic — its bigger eyebrow text needed the
+   extra room. The English eyebrow is small/tracked and doesn't, so pushing
+   the lynx down there just made it cover "MODULAR DIGITAL STUDIO" instead.
+   Both stages still move together (see .lynx-stage / .lynx-body-stage). */
+html[dir="rtl"] .lynx-stage { top: 36px; }
+html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%) translateY(36px); }
+/* tighten the gap down to the headline too — the shared .hero-title
+   margin-top was tuned for the Latin version's smaller eyebrow */
+html[dir="rtl"] .hero-title { margin-top: 2px; }
 /* Tajawal's descenders (under ن، ق، ي…) need more room than the tight
    Latin line-height gives, or the line-mask reveal clips them */
 html[dir="rtl"] .hero-title { line-height: 1.5; }

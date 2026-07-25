@@ -1,0 +1,20 @@
+{
+  "name": "remotion-paw-swipe",
+  "version": "1.0.0",
+  "description": "Renders the lynx paw-swipe + claw-mark clip used on the site hero",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts PawSwipe out/paw-swipe.webm --codec=vp8 --pixel-format=yuva420p --transparent"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@remotion/cli": "^4.0.499",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.499"
+  }
+}

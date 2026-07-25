@@ -6,3 +6,9 @@ convert.ps1
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Remotion project (renders the paw-swipe clip) — only its output belongs in
+# the site; the toolchain and intermediate renders don't need to be tracked
+remotion-paw-swipe/node_modules/
+remotion-paw-swipe/out/
+remotion-paw-swipe/.remotion/

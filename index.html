@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="meta.title">Modulynx — Modular Systems, Feline Precision</title>
-  <meta name="description" content="Modulynx builds modular digital systems with engineered precision — interfaces, motion and architecture that feel alive.">
+  <meta name="description" content="Modulynx builds modular digital systems with quiet precision — interfaces, motion and architecture that feel alive.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
   <!-- Open Graph / social preview cards -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://modulynx.netlify.app/">
   <meta property="og:title" content="Modulynx — Modular Systems, Feline Precision">
-  <meta property="og:description" content="Modulynx builds modular digital systems with engineered precision — interfaces, motion and architecture that feel alive.">
+  <meta property="og:description" content="Modulynx builds modular digital systems with quiet precision — interfaces, motion and architecture that feel alive.">
   <meta property="og:image" content="https://modulynx.netlify.app/assets/images/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Modulynx — Modular Systems, Feline Precision">
-  <meta name="twitter:description" content="Modulynx builds modular digital systems with engineered precision — interfaces, motion and architecture that feel alive.">
+  <meta name="twitter:description" content="Modulynx builds modular digital systems with quiet precision — interfaces, motion and architecture that feel alive.">
   <meta name="twitter:image" content="https://modulynx.netlify.app/assets/images/og-cover.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,17 +68,19 @@
     <div class="hero-rays" aria-hidden="true"></div>
 
     <div class="hero-inner">
-      <!-- The living lynx -->
+      <!-- The living lynx — head + two independent paws -->
       <div class="lynx-stage" id="lynxStage">
         <div class="lynx-aura" aria-hidden="true"></div>
-        <svg id="lynxSvg" class="lynx-svg" viewBox="0 0 240 240" role="img" data-i18n-aria-label="hero.lynxAria" aria-label="Modulynx lynx emblem">
+        <svg id="lynxSvg" class="lynx-svg" viewBox="0 -20 240 280" role="img" data-i18n-aria-label="hero.lynxAria" aria-label="Modulynx lynx emblem">
           <defs>
-            <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="furGrad" gradientUnits="userSpaceOnUse" x1="120" y1="-20" x2="120" y2="240">
               <stop offset="0" stop-color="#1d2635"/>
               <stop offset=".55" stop-color="#121826"/>
               <stop offset="1" stop-color="#0b0f16"/>
             </linearGradient>
-            <linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="1">
+            <!-- userSpaceOnUse so the neon edge gradient flows continuously
+                 across every shape instead of restarting per path -->
+            <linearGradient id="edgeGrad" gradientUnits="userSpaceOnUse" x1="10" y1="-20" x2="230" y2="240">
               <stop offset="0" stop-color="#f2a83b"/>
               <stop offset=".5" stop-color="#8fc7dd"/>
               <stop offset="1" stop-color="#f2a83b"/>
@@ -88,85 +90,261 @@
               <stop offset=".45" stop-color="#ffc95e"/>
               <stop offset="1" stop-color="#c97f16"/>
             </radialGradient>
-            <filter id="eyeGlow" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur stdDeviation="5" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            <filter id="eyeGlow" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="6.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
-
+            <!-- a <use>-instanced shape re-enters userSpaceOnUse in its own local
+                 coordinates, so the head's edgeGrad (tuned for the 240-wide face)
+                 would only show a thin slice of color on the paw. This local
+                 version flows the same amber→ice→amber across the paw's own
+                 0–84 box so both outlines read as the same style. -->
+            <linearGradient id="edgeGradPaw" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="84" y2="68">
+              <stop offset="0" stop-color="#f2a83b"/>
+              <stop offset=".5" stop-color="#8fc7dd"/>
+              <stop offset="1" stop-color="#f2a83b"/>
+            </linearGradient>
+            <!-- one real paw, toes hanging down, defined once and reused for both sides -->
+            <g id="pawFull">
+              <!-- claws sit behind the paw fur, retracted until the visitor hovers —
+                   same reveal timing and style as the fangs -->
+              <g class="claws">
+                <path d="M16 46 Q21 42 26 46 L21 68 Z" fill="#d9d5c9" stroke="url(#edgeGradPaw)" stroke-width=".8"/>
+                <path d="M37 46 Q42 42 47 46 L42 68 Z" fill="#d9d5c9" stroke="url(#edgeGradPaw)" stroke-width=".8"/>
+                <path d="M58 46 Q63 42 68 46 L63 68 Z" fill="#d9d5c9" stroke="url(#edgeGradPaw)" stroke-width=".8"/>
+              </g>
+              <path id="pawShape" fill="url(#furGrad)" stroke="url(#edgeGradPaw)" stroke-width="1.6" stroke-linejoin="round" d="
+                M0 46 C -6 36, -4 20, 6 12 C 14 4, 29 0, 42 0
+                C 55 0, 70 4, 78 12 C 88 20, 90 36, 84 46
+                Q 79 66, 73.5 64 Q 68 66, 63 46
+                Q 58 66, 52.5 64 Q 47 66, 42 46
+                Q 37 66, 31.5 64 Q 26 66, 21 46
+                Q 16 66, 10.5 64 Q 5 66, 0 46 Z"/>
+              <!-- toe creases: three finger lines + the curved line between
+                   them, bright like the rest of the features now -->
+              <g stroke="url(#edgeGradPaw)" stroke-width="1.2" fill="none" opacity=".9">
+                <path d="M21 46 L21 20"/>
+                <path d="M42 46 L42 16"/>
+                <path d="M63 46 L63 20"/>
+                <path d="M6 30 L21 20 L42 16 L63 20 L78 30"/>
+              </g>
+            </g>
           </defs>
+
           <!-- ── The living lynx mark ── -->
           <g class="lynx-breathe">
-              <g class="lynx-head" id="lynxHead">
-                <!-- ear tufts -->
-                <path class="tuft" d="M57 26 L48 4 L66 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.4"/>
-                <path class="tuft" d="M183 26 L192 4 L174 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.4"/>
-                <!-- silhouette -->
-                <path class="silhouette" d="
-                  M120 52
-                  C 106 53, 95 57, 86 64
-                  L 57 26
-                  L 53 90
-                  C 45 103, 41 115, 43 128
-                  L 25 141 L 47 148 L 33 166 L 58 167
-                  C 67 184, 85 197, 105 203
-                  C 111 207, 115 209, 120 209
-                  C 125 209, 129 207, 135 203
-                  C 155 197, 173 184, 182 167
-                  L 207 166 L 193 148 L 215 141 L 197 128
-                  C 199 115, 195 103, 187 90
-                  L 183 26
-                  L 154 64
-                  C 145 57, 134 53, 120 52 Z"
-                  fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="1.6" stroke-linejoin="round"/>
-                <!-- inner ear shading -->
-                <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85"/>
-                <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85"/>
-                <!-- facet lines -->
-                <g class="facets" stroke="#2a3547" stroke-width="1.1" fill="none" opacity=".9">
-                  <path d="M120 52 L120 90"/>
-                  <path d="M86 64 L104 96 L120 90 L136 96 L154 64"/>
-                  <path d="M53 90 L74 104 L104 96"/>
-                  <path d="M187 90 L166 104 L136 96"/>
-                  <path d="M43 128 L74 128 L74 104"/>
-                  <path d="M197 128 L166 128 L166 104"/>
-                  <path d="M58 167 L86 152 L74 128"/>
-                  <path d="M182 167 L154 152 L166 128"/>
-                  <path d="M86 152 L104 168 L120 158 L136 168 L154 152"/>
-                  <path d="M105 203 L104 168 M135 203 L136 168"/>
-                </g>
-                <!-- brow marks -->
-                <path d="M72 100 Q 88 92 102 99" stroke="#f2a83b" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"/>
-                <path d="M168 100 Q 152 92 138 99" stroke="#f2a83b" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"/>
+            <g class="lynx-head" id="lynxHead">
+              <!-- ear tufts: three short wisps, anchored right at the ear's tip vertex -->
+              <g class="tuft" stroke="url(#edgeGrad)" stroke-width="1.3" opacity=".85" fill="none" stroke-linecap="round">
+                <path d="M57 26 L46 3"/>
+                <path d="M57 26 L53 -7"/>
+                <path d="M57 26 L60 -10"/>
+              </g>
+              <g class="tuft" stroke="url(#edgeGrad)" stroke-width="1.3" opacity=".85" fill="none" stroke-linecap="round">
+                <path d="M183 26 L194 3"/>
+                <path d="M183 26 L187 -7"/>
+                <path d="M183 26 L180 -10"/>
+              </g>
+              <!-- silhouette -->
+              <path class="silhouette" d="
+                M120 52
+                C 106 53, 95 57, 86 64
+                L 57 26
+                L 53 90
+                C 45 103, 41 115, 43 128
+                L 25 141 L 47 148 L 33 166 L 58 167
+                C 67 184, 85 197, 105 203
+                C 111 207, 115 209, 120 209
+                C 125 209, 129 207, 135 203
+                C 155 197, 173 184, 182 167
+                L 207 166 L 193 148 L 215 141 L 197 128
+                C 199 115, 195 103, 187 90
+                L 183 26
+                L 154 64
+                C 145 57, 134 53, 120 52 Z"
+                fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <!-- inner ear shading, framed like every other feature -->
+              <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+              <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+              <!-- facet lines -->
+              <g class="facets" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".9">
+                <path d="M120 52 L120 90"/>
+                <path d="M86 64 L104 96 L120 90 L136 96 L154 64"/>
+                <path d="M53 90 L74 104 L104 96"/>
+                <path d="M187 90 L166 104 L136 96"/>
+                <path d="M43 128 L74 128 L74 104"/>
+                <path d="M197 128 L166 128 L166 104"/>
+                <path d="M58 167 L86 152 L74 128"/>
+                <path d="M182 167 L154 152 L166 128"/>
+                <path d="M86 152 L104 168 L120 158 L136 168 L154 152"/>
+                <path d="M105 203 L104 168 M135 203 L136 168"/>
+              </g>
+              <!-- brow marks: independently animatable for surprise (asymmetric)
+                   and anger (both furrowed) expressions. Angled rather than
+                   a soft arch by default — a sharp break partway along each
+                   brow, sloping down toward the nose, reads as a fiercer,
+                   more predatory resting expression. -->
+              <path class="brow-l" d="M67 93.5 L90 91.5 L105 102.5" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="brow-r" d="M173 93.5 L150 91.5 L135 102.5" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
 
-                <!-- ══ eyes ══ -->
-                <g class="eye-group" filter="url(#eyeGlow)">
-                  <g class="eye" id="eyeL">
-                    <path class="eye-shape" d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="url(#irisGrad)"/>
-                    <ellipse class="pupil" id="pupilL" cx="88" cy="113" rx="4.2" ry="8.4" fill="#0a0c10"/>
-                    <circle cx="84" cy="109" r="2" fill="#fff6df" opacity=".9"/>
-                    <path class="eyelid" id="lidL" d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="#0e1420"/>
-                  </g>
-                  <g class="eye" id="eyeR">
-                    <path class="eye-shape" d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="url(#irisGrad)"/>
-                    <ellipse class="pupil" id="pupilR" cx="152" cy="113" rx="4.2" ry="8.4" fill="#0a0c10"/>
-                    <circle cx="148" cy="109" r="2" fill="#fff6df" opacity=".9"/>
-                    <path class="eyelid" id="lidR" d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="#0e1420"/>
-                  </g>
+              <!-- ══ eyes — sharp asymmetric almond, small contained pupil ══ -->
+              <g class="eye-group" filter="url(#eyeGlow)">
+                <g class="eye" id="eyeL">
+                  <path class="eye-shape" d="M65 113 Q 88 97 109 112 Q 90 122 65 113 Z" fill="url(#irisGrad)" stroke="url(#edgeGrad)" stroke-width="1"/>
+                  <ellipse class="pupil" id="pupilL" cx="88" cy="110.5" rx="2.6" ry="6.5" fill="#0a0c10"/>
+                  <circle cx="84" cy="107" r="1.3" fill="#fff6df" opacity=".9"/>
+                  <!-- permanent hooded upper lid — droops slightly over the top of
+                       the eye for a sharper, more dominant look. Reuses the
+                       eye-shape's exact top curve so it lines up with no seam,
+                       then closes back on a shallower arc instead of the full
+                       lower curve. Separate from #lidL, which still does the
+                       existing full blink on top of this. -->
+                  <path class="eye-hood" d="M65 113 Q 88 97 109 112 Q 90 104 65 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+                  <path class="eyelid" id="lidL" d="M65 113 Q 88 97 109 112 Q 90 122 65 113 Z" fill="#0e1420"/>
                 </g>
-
-                <!-- nose + mouth -->
-                <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9"/>
-                <path d="M120 162 L120 172 M120 172 Q 112 180 104 176 M120 172 Q 128 180 136 176"
-                      stroke="#2a3547" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-                <!-- whiskers -->
-                <g class="whiskers" stroke="#4a5670" stroke-width="1" opacity=".5" fill="none" stroke-linecap="round">
-                  <path d="M96 160 Q 74 158 58 150"/>
-                  <path d="M98 168 Q 78 170 64 166"/>
-                  <path d="M144 160 Q 166 158 182 150"/>
-                  <path d="M142 168 Q 162 170 176 166"/>
+                <g class="eye" id="eyeR">
+                  <path class="eye-shape" d="M175 113 Q 152 97 131 112 Q 150 122 175 113 Z" fill="url(#irisGrad)" stroke="url(#edgeGrad)" stroke-width="1"/>
+                  <ellipse class="pupil" id="pupilR" cx="152" cy="110.5" rx="2.6" ry="6.5" fill="#0a0c10"/>
+                  <circle cx="156" cy="107" r="1.3" fill="#fff6df" opacity=".9"/>
+                  <path class="eye-hood" d="M175 113 Q 152 97 131 112 Q 150 104 175 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+                  <path class="eyelid" id="lidR" d="M175 113 Q 152 97 131 112 Q 150 122 175 113 Z" fill="#0e1420"/>
                 </g>
               </g>
+
+              <!-- tear-stripe facial markings, a real lynx feature — bright now like every other feature -->
+              <path d="M107 114 Q 100 130 92 147" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".85" stroke-linecap="round"/>
+              <path d="M133 114 Q 140 130 148 147" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".85" stroke-linecap="round"/>
+              <!-- nose -->
+              <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9" stroke="url(#edgeGrad)" stroke-width="1"/>
+              <!-- mouth + fangs share one group so they move together when it opens on hover.
+                   The opening is styled like the ear openings (dark fill, bright outline) and
+                   its boundary retraces the SAME two jaw curves as the mouth line below it, so
+                   it never crosses/intersects that original drawing — only its own bottom arc
+                   is new. Stays CLOSED (hidden) until the fangs show. -->
+              <g class="mouth-group">
+                <path class="mouth-cavity" d="M120 172 Q 112 180 104 176 Q 120 186 136 176 Q 128 180 120 172 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+                <path d="M120 162 L120 172 M120 172 Q 112 180 104 176 M120 172 Q 128 180 136 176"
+                      stroke="url(#edgeGrad)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                <g class="fangs">
+                  <path d="M106.5 177 L111.5 177 L109 184 Z" fill="#e9e6df" stroke="#2a3547" stroke-width=".5"/>
+                  <path d="M133.5 177 L128.5 177 L131 184 Z" fill="#e9e6df" stroke="#2a3547" stroke-width=".5"/>
+                </g>
+              </g>
+              <!-- whiskers: straight angular segments matching the low-poly language -->
+              <g class="whiskers" stroke="#8fc7dd" stroke-width="1" opacity=".55" fill="none" stroke-linecap="round">
+                <path d="M96 160 L78 156 L58 150"/>
+                <path d="M98 168 L80 169 L64 166"/>
+                <path d="M144 160 L162 156 L182 150"/>
+                <path d="M142 168 L160 169 L176 166"/>
+              </g>
+            </g>
+
+            <!-- ══ paws — separate from the head, a claw seated between each pair of toes ══ -->
+            <g id="pawL" class="lynx-paw">
+              <use href="#pawFull" x="20" y="190"/>
+            </g>
+            <g id="pawR" class="lynx-paw">
+              <use href="#pawFull" x="136" y="190"/>
+            </g>
           </g>
+        </svg>
+        <!-- pre-rendered swipe clip (built with Remotion — see
+             /remotion-paw-swipe), not hand-drawn: the right paw rises and
+             swipes down, leaving claw-mark trails, when you approach the
+             lynx. Transparent WebM so it sits directly over the paw. -->
+        <video class="paw-swipe-video" id="pawSwipeVideo" src="assets/video/paw-swipe.webm"
+               muted playsinline preload="auto" aria-hidden="true"></video>
+      </div>
+
+      <!-- The lynx's body: a slender torso with the feet connected directly to
+           it (no limbs), and a side tail — drawn in its own SVG so it can sit
+           BEHIND the hero text (z-index), unit-locked to the same 240-wide
+           coordinate scale as the head/paws SVG so it lines up underneath
+           them without measuring. -->
+      <div class="lynx-body-stage" aria-hidden="true">
+        <svg class="lynx-body-svg" viewBox="0 0 240 900">
+          <defs>
+            <linearGradient id="furGradBody" gradientUnits="userSpaceOnUse" x1="120" y1="0" x2="120" y2="262">
+              <stop offset="0" stop-color="#1d2635"/>
+              <stop offset=".55" stop-color="#121826"/>
+              <stop offset="1" stop-color="#0b0f16"/>
+            </linearGradient>
+            <linearGradient id="edgeGradBody" gradientUnits="userSpaceOnUse" x1="12" y1="0" x2="228" y2="262">
+              <stop offset="0" stop-color="#f2a83b"/>
+              <stop offset=".5" stop-color="#8fc7dd"/>
+              <stop offset="1" stop-color="#f2a83b"/>
+            </linearGradient>
+          </defs>
+
+          <!-- tail drawn FIRST (painted underneath) so the body shape below
+               covers its root and lower reach — it truly emerges from behind
+               the body rather than floating in front of it. Jointed into
+               three segments so it ripples instead of swinging as one rigid
+               rod. Sways continuously, more so the closer the cursor gets. -->
+          <!-- tail is one continuous path (no joints — nothing to seam).
+               Its shape is flexed live by lynx.js (control points ripple
+               with a per-point phase/amplitude), which is what makes a
+               single unbroken curve look genuinely dynamic instead of a
+               rigid rod swinging from the root. -->
+          <!-- a real lynx's tail is short and thick, not long and curling —
+               reshaped to match: much shorter reach, much wider stroke -->
+          <!-- tail: no wisps anymore — a plain, thick, single-piece tail
+               emerging from behind the body's RIGHT side. Realistic shape:
+               hangs down from the root, then curls back UP AND OUTWARD
+               (away from the body, to the right) at the tip — not curling
+               back in toward the body's own center. -->
+          <!-- pushed outward past the body's own right edge, raised up from
+               the root, and rebuilt as ONE continuously smooth curve — the
+               tangent direction matches exactly across both internal joints
+               (no reversal), so it reads as a single upward curl with no
+               visible corners/angles, only a gentle hook right at the tip -->
+          <g class="lynx-tail">
+            <path id="tailEdge" fill="none" stroke="url(#edgeGradBody)" stroke-width="22" stroke-linecap="round" d="
+              M204 155 C 210 153, 216 150, 221 146
+              C 226 142, 231 138, 235 133
+              C 239 128, 241 122, 238 116"/>
+            <path id="tailFill" fill="none" stroke="url(#furGradBody)" stroke-width="17" stroke-linecap="round" d="
+              M204 155 C 210 153, 216 150, 221 146
+              C 226 142, 231 138, 235 133
+              C 239 128, 241 122, 238 116"/>
+          </g>
+
+          <!-- feet, painted here (behind the body) so the body's layer covers
+               them — same position/scale as before, only the z-order moved -->
+          <g transform="translate(65,230) scale(.6)"><use href="#pawFull"/></g>
+          <g transform="translate(125,230) scale(.6)"><use href="#pawFull"/></g>
+
+          <!-- body: painted AFTER the tail and feet so it covers both. The
+               top is pulled down at the center into a notch, so each side
+               reads as its own rounded lobe — half a heart — and those wide
+               lobes are what show as "legs" past the head's edges. -->
+          <g class="lynx-body-sway" style="transform-origin: 120px 150px;">
+            <path fill="url(#furGradBody)" stroke="url(#edgeGradBody)" stroke-width="1.6" stroke-linejoin="round" d="
+              M120 140
+              C 104 124, 84 109, 59 103
+              C 43 99, 29 105, 27 118
+              C 25 129, 26 137, 29 145
+              C 17 160, 19 172, 25 185
+              C 30 200, 41 210, 55 220
+              Q 120 272, 183 220
+              C 197 210, 208 200, 214 185
+              C 219 172, 221 160, 219 145
+              C 213 137, 214 129, 212 118
+              C 209 105, 196 99, 179 103
+              C 155 109, 134 124, 120 140 Z"/>
+            <!-- facet lines echoing the head's angular style -->
+            <g stroke="#2a3547" stroke-width="1.1" fill="none" opacity=".85">
+              <path d="M120 140 L120 265"/>
+              <path d="M23 175 L62 195 M217 175 L179 195"/>
+            </g>
+          </g>
+          <!-- shoulder lines live OUTSIDE .lynx-body-sway on purpose: they
+               must move ONLY because of the paw (lynx.js redraws their
+               bottom point every frame to match it exactly), never because
+               the body itself is swaying. Top point lowered and pulled in
+               right against the body's own edge, just inside it. -->
+          <path class="shoulder-line-l" fill="none" stroke="url(#edgeGradBody)" stroke-width="1.6" stroke-linecap="round" d="M26 155 C 34 185, 39 200, 48 220"/>
+          <path class="shoulder-line-r" fill="none" stroke="url(#edgeGradBody)" stroke-width="1.6" stroke-linecap="round" d="M214 155 C 206 185, 201 200, 192 220"/>
         </svg>
       </div>
 
@@ -177,7 +355,7 @@
           <span class="line-mask"><span class="line accent" data-i18n="hero.line2">eyes of a lynx.</span></span>
         </h1>
         <p class="hero-sub reveal" data-i18n="hero.sub">
-          Modulynx engineers modular systems, cinematic interfaces and living motion —
+          Modulynx designs modular systems, cinematic interfaces and living motion —
           products that watch, react and move like something alive.
         </p>
         <div class="hero-actions reveal">
@@ -237,7 +415,7 @@
         </article>
         <article class="card tilt reveal">
           <div class="card-icon">◈</div>
-          <h3 data-i18n="services.card2.title">Interface Engineering</h3>
+          <h3 data-i18n="services.card2.title">Interface Design</h3>
           <p data-i18n="services.card2.body">Production-grade web apps with obsessive attention to state, accessibility and detail.</p>
         </article>
         <article class="card tilt reveal">
