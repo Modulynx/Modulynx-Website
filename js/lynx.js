@@ -342,6 +342,12 @@
     // leaning forward, per the brief. The two CTA buttons get the full
     // scratch: the marks land ON the button, not back at the lynx.
     var doesSwipe = el.id !== "navToggle";
+    // holding a link past ~500ms is also what Android Chrome (and other
+    // non-iOS mobile browsers) uses to trigger its OWN long-press behavior
+    // — a URL-preview bar plus an "Open in new tab / Copy link" menu, via
+    // the contextmenu event. -webkit-touch-callout (see .btn in style.css)
+    // only covers iOS Safari's version of this; this covers the rest.
+    el.addEventListener("contextmenu", function (e) { e.preventDefault(); });
     function enter() {
       clearTimeout(returnTimer);
       if (bodyStage) bodyStage.classList.remove("is-returning");

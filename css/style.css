@@ -392,13 +392,33 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
 @media (max-height: 860px) {
   .hero-inner { padding: 56px 24px 30px; gap: 8px; }
   .hero-actions { margin-top: 20px; }
-}
-@media (max-height: 860px) and (min-width: 961px) {
   .lynx-stage, .lynx-body-stage { width: clamp(140px, 16vw, 190px); }
-}
-@media (max-height: 860px) {
   html[dir="rtl"] .hero-eyebrow { font-size: clamp(20px, 2.8vw, 26px); margin: 4px 0 0; }
   html[dir="rtl"] .hero-title { margin-top: 0; }
+  /* the fixes above alone weren't enough on WIDE-but-not-tall screens (a
+     laptop browser window) — .hero-title's font-size is vw-based and was
+     still hitting close to its 84px max there, which the narrower phone
+     viewports never triggered since their vw share is much smaller. Cap it
+     lower here regardless of width, and tighten the very generous Arabic
+     line-height (1.5) that was compounding it. */
+  .hero-title { font-size: clamp(32px, 5.5vw, 60px); margin: 8px 0 12px; }
+  html[dir="rtl"] .hero-title { line-height: 1.3; }
+  .hero-sub { font-size: clamp(14px, 1.2vw, 16px); }
+}
+/* a second, stronger tier for actually small phones (an iPhone 7's ~560-600px
+   visible height with Safari's address bar showing still overflowed with
+   only the tier above) — shrink further and, importantly, keep the two CTA
+   buttons from wrapping onto their own lines, which alone was costing an
+   extra ~50-70px. */
+@media (max-height: 650px) {
+  .hero-inner { padding: 24px 20px 18px; gap: 4px; }
+  .lynx-stage, .lynx-body-stage { width: clamp(96px, 22vw, 140px); }
+  .hero-title { font-size: clamp(28px, 8vw, 44px); margin: 4px 0 8px; }
+  html[dir="rtl"] .hero-title { line-height: 1.25; margin-top: 0; }
+  .hero-sub { font-size: 13px; }
+  .hero-actions { gap: 10px; margin-top: 12px; flex-wrap: nowrap; }
+  .hero-actions .btn { padding: 10px 18px; font-size: 13px; white-space: nowrap; }
+  html[dir="rtl"] .hero-eyebrow { font-size: 16px; margin: 2px 0 0; }
 }
 
 /* — buttons — */
@@ -409,6 +429,17 @@ body.loaded .line-mask:nth-child(2) .line { animation-delay: .12s; }
   transition: transform .35s var(--ease-spring), box-shadow .35s, background .3s, color .3s;
   will-change: transform;
   position: relative; overflow: hidden;
+  /* the hold-to-fill interaction runs to 1.4s — long enough that iOS
+     Safari's own long-press-on-a-link behavior (the "Open/Add to Reading
+     List/Share" preview menu) was kicking in and hijacking the touch
+     before our own touchend ever got to fire the real navigation.
+     touch-callout is Safari's actual switch for that popup. */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; user-select: none;
+  /* helps the browser commit to "this is a tap" faster instead of holding
+     off to see if it's a scroll/zoom/long-press gesture — every bit of
+     that decision delay works against a deliberately-long hold like ours */
+  touch-action: manipulation;
 }
 /* touch feedback: a fill sweeps across the button for as long as it's held
    — reusing .is-touch-hover, the same class lynx.js already holds on
@@ -849,12 +880,13 @@ html[dir="rtl"] .hero-eyebrow {
    already, so it doesn't get this nudge. */
 html[dir="rtl"] .lynx-stage { top: 36px; }
 html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%) translateY(36px); }
-/* on short+wide viewports the lynx also shrinks (see the max-height media
-   query above) — a fixed 36px offset became proportionally much bigger on
-   the smaller lynx last time, sagging the body away from the head. Reset
-   it there instead of scaling it down. Must come after the rules above
-   (equal specificity — source order decides) to actually win. */
-@media (max-height: 860px) and (min-width: 961px) {
+/* on short viewports the lynx also shrinks (see the max-height media query
+   above — this now includes narrow/mobile too, not just wide screens) — a
+   fixed 36px offset became proportionally much bigger on the smaller lynx
+   last time, sagging the body away from the head. Reset it there instead
+   of scaling it down. Must come after the rules above (equal specificity —
+   source order decides) to actually win. */
+@media (max-height: 860px) {
   html[dir="rtl"] .lynx-stage { top: 0; }
   html[dir="rtl"] .lynx-body-stage { transform: translateX(-50%); }
 }
