@@ -29,8 +29,8 @@
   <!-- ══════════ Cinematic preloader: lynx eyes opening ══════════ -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-eyes">
-      <span class="pre-eye"><span class="pre-pupil"></span></span>
-      <span class="pre-eye"><span class="pre-pupil"></span></span>
+      <span class="pre-eye"><span class="pre-iris"></span><span class="pre-pupil"></span></span>
+      <span class="pre-eye"><span class="pre-iris"></span><span class="pre-pupil"></span></span>
     </div>
     <p class="preloader-word">MODULYNX</p>
   </div>
@@ -82,9 +82,9 @@
               <stop offset="1" stop-color="#f2a83b"/>
             </linearGradient>
             <radialGradient id="irisGrad" cx=".5" cy=".45" r=".65">
-              <stop offset="0" stop-color="#ffe9b0"/>
-              <stop offset=".45" stop-color="#ffc95e"/>
-              <stop offset="1" stop-color="#c97f16"/>
+              <stop offset="0" stop-color="#f2e8a8"/>
+              <stop offset=".45" stop-color="#c3ca4f"/>
+              <stop offset="1" stop-color="#7a8a1a"/>
             </radialGradient>
             <filter id="eyeGlow" x="-100%" y="-100%" width="300%" height="300%">
               <feGaussianBlur stdDeviation="6.5" result="b"/>
@@ -186,8 +186,9 @@
               <!-- ══ eyes — sharp asymmetric almond, small contained pupil ══ -->
               <g class="eye-group" filter="url(#eyeGlow)">
                 <g class="eye" id="eyeL">
-                  <path class="eye-shape" d="M65 113 Q 88 97 109 112 Q 90 122 65 113 Z" fill="url(#irisGrad)" stroke="url(#edgeGrad)" stroke-width="1"/>
-                  <ellipse class="pupil" id="pupilL" cx="88" cy="110.5" rx="2.6" ry="6.5" fill="#0a0c10"/>
+                  <path class="eye-shape" d="M65 113 Q 88 97 109 112 Q 90 122 65 113 Z" fill="#f2ede0" stroke="url(#edgeGrad)" stroke-width="1"/>
+                  <ellipse class="iris" cx="88" cy="110.5" rx="6.5" ry="5.5" fill="url(#irisGrad)"/>
+                  <ellipse class="pupil" id="pupilL" cx="88" cy="111" rx="2.2" ry="5" fill="#0a0c10"/>
                   <circle cx="84" cy="107" r="1.3" fill="#fff6df" opacity=".9"/>
                   <!-- permanent hooded upper lid — droops slightly over the top of
                        the eye for a sharper, more dominant look. Reuses the
@@ -195,14 +196,15 @@
                        then closes back on a shallower arc instead of the full
                        lower curve. Separate from #lidL, which still does the
                        existing full blink on top of this. -->
-                  <path class="eye-hood" d="M65 113 Q 88 97 109 112 Q 90 104 65 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+                  <path class="eye-hood" d="M65 113 Q 88 97 109 112 Q 90 108 65 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
                   <path class="eyelid" id="lidL" d="M65 113 Q 88 97 109 112 Q 90 122 65 113 Z" fill="#0e1420"/>
                 </g>
                 <g class="eye" id="eyeR">
-                  <path class="eye-shape" d="M175 113 Q 152 97 131 112 Q 150 122 175 113 Z" fill="url(#irisGrad)" stroke="url(#edgeGrad)" stroke-width="1"/>
-                  <ellipse class="pupil" id="pupilR" cx="152" cy="110.5" rx="2.6" ry="6.5" fill="#0a0c10"/>
+                  <path class="eye-shape" d="M175 113 Q 152 97 131 112 Q 150 122 175 113 Z" fill="#f2ede0" stroke="url(#edgeGrad)" stroke-width="1"/>
+                  <ellipse class="iris" cx="152" cy="110.5" rx="6.5" ry="5.5" fill="url(#irisGrad)"/>
+                  <ellipse class="pupil" id="pupilR" cx="152" cy="111" rx="2.2" ry="5" fill="#0a0c10"/>
                   <circle cx="156" cy="107" r="1.3" fill="#fff6df" opacity=".9"/>
-                  <path class="eye-hood" d="M175 113 Q 152 97 131 112 Q 150 104 175 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+                  <path class="eye-hood" d="M175 113 Q 152 97 131 112 Q 150 108 175 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
                   <path class="eyelid" id="lidR" d="M175 113 Q 152 97 131 112 Q 150 122 175 113 Z" fill="#0e1420"/>
                 </g>
               </g>
@@ -485,9 +487,6 @@
                 <line x1="210" y1="75" x2="210" y2="125" stroke="#8fc7dd"/>
                 <line x1="270" y1="50" x2="270" y2="105" stroke="#f2a83b"/>
               </g>
-              <circle cx="330" cy="45" r="16" fill="none" stroke="rgba(242,168,59,.5)" stroke-width="1.5"/>
-              <path d="M318 45 Q 330 37 342 45 Q 330 52 318 45 Z" fill="#f2a83b"/>
-              <circle cx="330" cy="44.5" r="3" fill="#0a0c10"/>
             </svg>
           </div>
           <div class="project-body">
@@ -591,7 +590,7 @@
           <p class="contact-sub" data-i18n="contact.sub">Tell us what you're building. We'll answer within 24 hours.</p>
           <p class="contact-direct"><span data-i18n="contact.directPrefix">Or write directly:</span> <a href="mailto:modulynx.project@gmail.com">modulynx.project@gmail.com</a></p>
           <div class="contact-eyes" aria-hidden="true">
-            <span class="mini-eye"></span><span class="mini-eye"></span>
+            <span class="mini-eye"><span class="mini-pupil"></span></span><span class="mini-eye"><span class="mini-pupil"></span></span>
           </div>
         </div>
         <form class="contact-form" id="contactForm" novalidate>
@@ -623,20 +622,72 @@
       <circle class="scroll-lynx-ring-track" cx="60" cy="60" r="52"/>
       <circle class="scroll-lynx-ring-fill" id="scrollLynxFill" cx="60" cy="60" r="52"/>
     </svg>
-    <svg viewBox="0 0 240 240" class="scroll-lynx-face" aria-hidden="true">
-      <path d="M57 26 L48 4 L66 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="2"/>
-      <path d="M183 26 L192 4 L174 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="2"/>
-      <path d="M120 52 C 106 53, 95 57, 86 64 L 57 26 L 53 90 C 45 103, 41 115, 43 128
-               L 25 141 L 47 148 L 33 166 L 58 167 C 67 184, 85 197, 105 203
-               C 111 207, 115 209, 120 209 C 125 209, 129 207, 135 203
-               C 155 197, 173 184, 182 167 L 207 166 L 193 148 L 215 141 L 197 128
-               C 199 115, 195 103, 187 90 L 183 26 L 154 64 C 145 57, 134 53, 120 52 Z"
-            fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="2" stroke-linejoin="round"/>
-      <g id="scrollLynxEyes">
-        <path d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="url(#irisGrad)"/>
-        <ellipse id="scrollPupilL" cx="88" cy="113" rx="5" ry="10" fill="#0a0c10"/>
-        <path d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="url(#irisGrad)"/>
-        <ellipse id="scrollPupilR" cx="152" cy="113" rx="5" ry="10" fill="#0a0c10"/>
+    <svg viewBox="0 -20 240 230" class="scroll-lynx-face" aria-hidden="true">
+      <g stroke="url(#edgeGrad)" stroke-width="1.3" opacity=".85" fill="none" stroke-linecap="round">
+        <path d="M57 26 L46 3"/>
+        <path d="M57 26 L53 -7"/>
+        <path d="M57 26 L60 -10"/>
+      </g>
+      <g stroke="url(#edgeGrad)" stroke-width="1.3" opacity=".85" fill="none" stroke-linecap="round">
+        <path d="M183 26 L194 3"/>
+        <path d="M183 26 L187 -7"/>
+        <path d="M183 26 L180 -10"/>
+      </g>
+      <path d="
+        M120 52
+        C 106 53, 95 57, 86 64
+        L 57 26
+        L 53 90
+        C 45 103, 41 115, 43 128
+        L 25 141 L 47 148 L 33 166 L 58 167
+        C 67 184, 85 197, 105 203
+        C 111 207, 115 209, 120 209
+        C 125 209, 129 207, 135 203
+        C 155 197, 173 184, 182 167
+        L 207 166 L 193 148 L 215 141 L 197 128
+        C 199 115, 195 103, 187 90
+        L 183 26
+        L 154 64
+        C 145 57, 134 53, 120 52 Z"
+        fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+      <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+      <g stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".9">
+        <path d="M120 52 L120 90"/>
+        <path d="M86 64 L104 96 L120 90 L136 96 L154 64"/>
+        <path d="M53 90 L74 104 L104 96"/>
+        <path d="M187 90 L166 104 L136 96"/>
+        <path d="M43 128 L74 128 L74 104"/>
+        <path d="M197 128 L166 128 L166 104"/>
+        <path d="M58 167 L86 152 L74 128"/>
+        <path d="M182 167 L154 152 L166 128"/>
+        <path d="M86 152 L104 168 L120 158 L136 168 L154 152"/>
+        <path d="M105 203 L104 168 M135 203 L136 168"/>
+      </g>
+      <path d="M67 95 L90 93 L105 104" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M173 95 L150 93 L135 104" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
+      <g id="scrollLynxEyes" filter="url(#eyeGlow)">
+        <path d="M65 113 Q 88 97 109 112 Q 90 122 65 113 Z" fill="#f2ede0" stroke="url(#edgeGrad)" stroke-width="1"/>
+        <ellipse cx="88" cy="110.5" rx="6.5" ry="5.5" fill="url(#irisGrad)"/>
+        <ellipse id="scrollPupilL" cx="88" cy="111" rx="2.2" ry="5" fill="#0a0c10"/>
+        <circle cx="84" cy="107" r="1.3" fill="#fff6df" opacity=".9"/>
+        <path d="M65 113 Q 88 97 109 112 Q 90 108 65 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+        <path d="M175 113 Q 152 97 131 112 Q 150 122 175 113 Z" fill="#f2ede0" stroke="url(#edgeGrad)" stroke-width="1"/>
+        <ellipse cx="152" cy="110.5" rx="6.5" ry="5.5" fill="url(#irisGrad)"/>
+        <ellipse id="scrollPupilR" cx="152" cy="111" rx="2.2" ry="5" fill="#0a0c10"/>
+        <circle cx="156" cy="107" r="1.3" fill="#fff6df" opacity=".9"/>
+        <path d="M175 113 Q 152 97 131 112 Q 150 108 175 113 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+      </g>
+      <path d="M107 114 Q 100 130 92 147" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".85" stroke-linecap="round"/>
+      <path d="M133 114 Q 140 130 148 147" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".85" stroke-linecap="round"/>
+      <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9" stroke="url(#edgeGrad)" stroke-width="1"/>
+      <path d="M120 162 L120 172 M120 172 Q 112 180 104 176 M120 172 Q 128 180 136 176"
+            stroke="url(#edgeGrad)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <g stroke="#8fc7dd" stroke-width="1" opacity=".55" fill="none" stroke-linecap="round">
+        <path d="M96 160 L78 156 L58 150"/>
+        <path d="M98 168 L80 169 L64 166"/>
+        <path d="M144 160 L162 156 L182 150"/>
+        <path d="M142 168 L160 169 L176 166"/>
       </g>
     </svg>
   </button>

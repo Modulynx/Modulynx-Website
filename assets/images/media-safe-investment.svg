@@ -10,9 +10,6 @@
     <line x1="420" y1="150" x2="420" y2="250" stroke="#8fc7dd"/>
     <line x1="540" y1="100" x2="540" y2="210" stroke="#f2a83b"/>
   </g>
-  <circle cx="660" cy="90" r="32" fill="none" stroke="rgba(242,168,59,.5)" stroke-width="3"/>
-  <path d="M636 90 Q 660 74 684 90 Q 660 104 636 90 Z" fill="#f2a83b"/>
-  <circle cx="660" cy="89" r="6" fill="#0a0c10"/>
   <text x="40" y="450" font-family="'Space Grotesk','Segoe UI',sans-serif" font-weight="700" font-size="30" fill="#e9e6df">Safe Investment System</text>
   <text x="40" y="478" font-family="'Inter','Segoe UI',sans-serif" font-size="16" fill="#8fc7dd" letter-spacing="1">MODULYNX — LIVE</text>
 </svg>

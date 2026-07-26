@@ -16,9 +16,9 @@
       <stop offset="1" stop-color="#f2a83b"/>
     </linearGradient>
     <radialGradient id="irisGrad" cx=".5" cy=".45" r=".65">
-      <stop offset="0" stop-color="#ffe9b0"/>
-      <stop offset=".45" stop-color="#ffc95e"/>
-      <stop offset="1" stop-color="#c97f16"/>
+      <stop offset="0" stop-color="#f2e8a8"/>
+      <stop offset=".45" stop-color="#c3ca4f"/>
+      <stop offset="1" stop-color="#7a8a1a"/>
     </radialGradient>
     <radialGradient id="aura" cx=".5" cy=".5" r=".5">
       <stop offset="0" stop-color="#f2a83b" stop-opacity=".3"/>
@@ -48,17 +48,25 @@
 
   <!-- lynx, scaled to fit the 191px band -->
   <g transform="translate(872 -2) scale(0.82)">
-    <path d="M57 26 L48 4 L66 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.6"/>
-    <path d="M183 26 L192 4 L174 22 Z" fill="#0b0f16" stroke="url(#edgeGrad)" stroke-width="1.6"/>
+    <g stroke="url(#edgeGrad)" stroke-width="1.6" opacity=".85" fill="none" stroke-linecap="round">
+      <path d="M57 26 L46 3"/>
+      <path d="M57 26 L53 -7"/>
+      <path d="M57 26 L60 -10"/>
+    </g>
+    <g stroke="url(#edgeGrad)" stroke-width="1.6" opacity=".85" fill="none" stroke-linecap="round">
+      <path d="M183 26 L194 3"/>
+      <path d="M183 26 L187 -7"/>
+      <path d="M183 26 L180 -10"/>
+    </g>
     <path d="M120 52 C 106 53, 95 57, 86 64 L 57 26 L 53 90 C 45 103, 41 115, 43 128
              L 25 141 L 47 148 L 33 166 L 58 167 C 67 184, 85 197, 105 203
              C 111 207, 115 209, 120 209 C 125 209, 129 207, 135 203
              C 155 197, 173 184, 182 167 L 207 166 L 193 148 L 215 141 L 197 128
              C 199 115, 195 103, 187 90 L 183 26 L 154 64 C 145 57, 134 53, 120 52 Z"
           fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="1.8" stroke-linejoin="round"/>
-    <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85"/>
-    <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85"/>
-    <g stroke="#2a3547" stroke-width="1.2" fill="none" opacity=".9">
+    <path d="M62 40 L58 82 L80 62 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+    <path d="M178 40 L182 82 L160 62 Z" fill="#070a10" opacity=".85" stroke="url(#edgeGrad)" stroke-width="1"/>
+    <g stroke="url(#edgeGrad)" stroke-width="1.2" fill="none" opacity=".9">
       <path d="M120 52 L120 90"/>
       <path d="M86 64 L104 96 L120 90 L136 96 L154 64"/>
       <path d="M53 90 L74 104 L104 96"/>
@@ -70,24 +78,30 @@
       <path d="M86 152 L104 168 L120 158 L136 168 L154 152"/>
       <path d="M105 203 L104 168 M135 203 L136 168"/>
     </g>
-    <path d="M72 100 Q 88 92 102 99" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".55" stroke-linecap="round"/>
-    <path d="M168 100 Q 152 92 138 99" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".55" stroke-linecap="round"/>
+    <path d="M67 95 L90 93 L105 104" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M173 95 L150 93 L135 104" stroke="#f2a83b" stroke-width="1.8" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/>
     <g filter="url(#eyeGlow)">
-      <path d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="url(#irisGrad)"/>
-      <ellipse cx="88" cy="113" rx="4.6" ry="9" fill="#0a0c10"/>
+      <path d="M70 114 Q 88 102 106 114 Q 88 125 70 114 Z" fill="#f2ede0" stroke="url(#edgeGrad)" stroke-width="1"/>
+      <ellipse cx="88" cy="113" rx="9" ry="5" fill="url(#irisGrad)"/>
+      <ellipse cx="88" cy="113" rx="3" ry="4" fill="#0a0c10"/>
       <circle cx="84" cy="109" r="2.2" fill="#fff6df" opacity=".9"/>
-      <path d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="url(#irisGrad)"/>
-      <ellipse cx="152" cy="113" rx="4.6" ry="9" fill="#0a0c10"/>
+      <path d="M70 114 Q 88 102 106 114 Q 88 109 70 114 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
+      <path d="M134 114 Q 152 102 170 114 Q 152 125 134 114 Z" fill="#f2ede0" stroke="url(#edgeGrad)" stroke-width="1"/>
+      <ellipse cx="152" cy="113" rx="9" ry="5" fill="url(#irisGrad)"/>
+      <ellipse cx="152" cy="113" rx="3" ry="4" fill="#0a0c10"/>
       <circle cx="148" cy="109" r="2.2" fill="#fff6df" opacity=".9"/>
+      <path d="M134 114 Q 152 102 170 114 Q 152 109 134 114 Z" fill="#0e1420" stroke="url(#edgeGrad)" stroke-width=".8" opacity=".92"/>
     </g>
-    <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9"/>
+    <path d="M107 114 Q 100 130 92 147" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".85" stroke-linecap="round"/>
+    <path d="M133 114 Q 140 130 148 147" stroke="url(#edgeGrad)" stroke-width="1.3" fill="none" opacity=".85" stroke-linecap="round"/>
+    <path d="M112 150 L128 150 L120 162 Z" fill="#f2a83b" opacity=".9" stroke="url(#edgeGrad)" stroke-width="1"/>
     <path d="M120 162 L120 172 M120 172 Q 112 180 104 176 M120 172 Q 128 180 136 176"
-          stroke="#2a3547" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-    <g stroke="#4a5670" stroke-width="1.1" opacity=".5" fill="none" stroke-linecap="round">
-      <path d="M96 160 Q 74 158 58 150"/>
-      <path d="M98 168 Q 78 170 64 166"/>
-      <path d="M144 160 Q 166 158 182 150"/>
-      <path d="M142 168 Q 162 170 176 166"/>
+          stroke="url(#edgeGrad)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <g stroke="#8fc7dd" stroke-width="1.1" opacity=".55" fill="none" stroke-linecap="round">
+      <path d="M96 160 L78 156 L58 150"/>
+      <path d="M98 168 L80 169 L64 166"/>
+      <path d="M144 160 L162 156 L182 150"/>
+      <path d="M142 168 L160 169 L176 166"/>
     </g>
   </g>
 
