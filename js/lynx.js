@@ -217,37 +217,19 @@
   }
   if (swipeVideo && !reduced) {
     swipeVideo.addEventListener("ended", function () { swipeVideo.classList.remove("is-active"); });
-    // clicking/tapping ANYWHERE on the page shows the same claw-mark right
-    // at that exact point — a click is a much more deliberate, direct
-    // "interaction" than a hover, so it gets the same reaction the lynx
-    // gives its own paw or a button. EXCEPT on actual interactive controls
-    // (buttons, links, the nav-toggle whether it's showing the hamburger or
-    // the X, form fields) — those already have their own dedicated
-    // reactions (or none, for the nav-toggle's X), and getting a second,
-    // generic mark on top of a real click reads as noise, not a reaction.
-    var isExcludedTarget = function (el) {
-      return !!(el && el.closest && el.closest("a, button, input, textarea, select, .nav-toggle"));
-    };
-    // iOS Safari only reliably synthesizes a "click" from a tap on elements
-    // it treats as interactive (links/buttons/form fields, or anything with
-    // cursor:pointer) — a tap on a plain div/section/paragraph often never
-    // fires click at all there, even though it does on every other touch
-    // browser (confirmed: worked on a touchscreen laptop, not on an
-    // iPhone). touchend fires unconditionally everywhere, so it's the
-    // reliable trigger; lastTouchTrigger skips the follow-up "click" on
-    // browsers where both fire for the same tap, so it doesn't double up.
-    var lastTouchTrigger = 0;
-    document.addEventListener("touchend", function (e) {
-      var touch = e.changedTouches && e.changedTouches[0];
-      if (!touch) return;
-      var target = document.elementFromPoint(touch.clientX, touch.clientY);
-      if (isExcludedTarget(target)) return;
-      lastTouchTrigger = Date.now();
-      triggerSwipeAtPoint(touch.clientX, touch.clientY, 0, 0);
-    }, { passive: true });
+    // clicking ANYWHERE on the page shows the same claw-mark right at that
+    // exact point — a click is a much more deliberate, direct "interaction"
+    // than a hover, so it gets the same reaction the lynx gives its own
+    // paw or a button. EXCEPT on actual interactive controls (buttons,
+    // links, the nav-toggle whether it's showing the hamburger or the X,
+    // form fields) — those already have their own dedicated reactions (or
+    // none, for the nav-toggle's X), and getting a second, generic mark on
+    // top of a real click reads as noise, not a reaction.
+    // Mouse only, deliberately — a touchend-based version was tried to
+    // cover taps too, but touchend fires on ANY touch release, including
+    // just scrolling the page, so it kept firing a mark on every scroll.
     document.addEventListener("click", function (e) {
-      if (Date.now() - lastTouchTrigger < 500) return; // already handled via touchend just now
-      if (isExcludedTarget(e.target)) return;
+      if (e.target.closest("a, button, input, textarea, select, .nav-toggle")) return;
       triggerSwipeAtPoint(e.clientX, e.clientY, 0, 0);
     });
     stage.addEventListener("mouseenter", function () { triggerSwipeAt(pawR, -12, 15); });
