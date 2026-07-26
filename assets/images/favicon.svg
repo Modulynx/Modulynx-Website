@@ -1,12 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#0b0f16"/>
-  <radialGradient id="g" cx=".5" cy=".45" r=".65">
-    <stop offset="0" stop-color="#f2e8a8"/>
-    <stop offset=".45" stop-color="#c3ca4f"/>
-    <stop offset="1" stop-color="#7a8a1a"/>
-  </radialGradient>
-  <path d="M8 32 Q 32 18 56 32 Q 32 46 8 32 Z" fill="#f2ede0"/>
-  <ellipse cx="32" cy="32" rx="10" ry="5" fill="url(#g)"/>
-  <ellipse cx="32" cy="32" rx="3.5" ry="3" fill="#0a0c10"/>
-  <circle cx="28" cy="29" r="1.4" fill="#fff6df" opacity=".9"/>
+  <defs>
+    <linearGradient id="furGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2635"/>
+      <stop offset=".55" stop-color="#121826"/>
+      <stop offset="1" stop-color="#0b0f16"/>
+    </linearGradient>
+    <linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2a83b"/>
+      <stop offset=".5" stop-color="#8fc7dd"/>
+      <stop offset="1" stop-color="#f2a83b"/>
+    </linearGradient>
+    <radialGradient id="g" cx=".5" cy=".45" r=".65">
+      <stop offset="0" stop-color="#f2e8a8"/>
+      <stop offset=".45" stop-color="#c3ca4f"/>
+      <stop offset="1" stop-color="#7a8a1a"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(0.8 6.6) scale(0.26)">
+    <g stroke="url(#edgeGrad)" stroke-width="2.4" opacity=".85" fill="none" stroke-linecap="round">
+      <path d="M57 26 L46 3"/>
+      <path d="M57 26 L53 -7"/>
+      <path d="M57 26 L60 -10"/>
+    </g>
+    <g stroke="url(#edgeGrad)" stroke-width="2.4" opacity=".85" fill="none" stroke-linecap="round">
+      <path d="M183 26 L194 3"/>
+      <path d="M183 26 L187 -7"/>
+      <path d="M183 26 L180 -10"/>
+    </g>
+    <path d="M120 52 C 106 53, 95 57, 86 64 L 57 26 L 53 90 C 45 103, 41 115, 43 128
+             L 25 141 L 47 148 L 33 166 L 58 167 C 67 184, 85 197, 105 203
+             C 111 207, 115 209, 120 209 C 125 209, 129 207, 135 203
+             C 155 197, 173 184, 182 167 L 207 166 L 193 148 L 215 141 L 197 128
+             C 199 115, 195 103, 187 90 L 183 26 L 154 64 C 145 57, 134 53, 120 52 Z"
+          fill="url(#furGrad)" stroke="url(#edgeGrad)" stroke-width="3" stroke-linejoin="round"/>
+    <ellipse cx="88" cy="111" rx="10" ry="6" fill="url(#g)"/>
+    <ellipse cx="88" cy="111" rx="3.4" ry="4.6" fill="#0a0c10"/>
+    <ellipse cx="152" cy="111" rx="10" ry="6" fill="url(#g)"/>
+    <ellipse cx="152" cy="111" rx="3.4" ry="4.6" fill="#0a0c10"/>
+  </g>
 </svg>
